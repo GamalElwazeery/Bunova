@@ -1,7 +1,7 @@
 .executionkit/*
 !.executionkit/runtime/
 .executionkit/runtime/*
-!.executionkit/runtime/AI-ExecutionKit/
+!.executionkit/runtime/kit/
 
 # Local/generated ExecutionKit state
 .executionkit/state/
