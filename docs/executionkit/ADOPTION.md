@@ -10,26 +10,26 @@
 - Source HEAD inspected/pinned: `fb49bfa3a16995b4ea785ed6ca66d0da808032c8`
 - Published VERSION: `3.0.0`
 - Maturity: `M0_PLANNING_ONLY`
-- Topology: exact pinned isolated runtime under `.executionkit/runtime/AI-ExecutionKit`
+- Topology: exact pinned isolated runtime at the canonical installed path `.executionkit/runtime/kit`
 - Product execution: blocked until the K00 audit/activation boundary is accepted.
 
 ## Why preserved topology is required
 
-Bunova is planning-only but not unhistoried: its native `TODO.md` already contains accepted P00 planning history plus a detailed product backlog. The current automatic installer correctly refuses to infer acceptance semantics from pre-checked native Markdown. Rewriting P00 acceptance merely to make `install --auto` pass would violate preservation rules.
+Bunova is planning-only but not unhistoried: its native `TODO.md` already contains accepted P00 planning history plus a detailed product backlog. The current automatic installer correctly refuses to infer acceptance semantics from pre-checked native Markdown and also instructs mature native projections/pinned runtimes to use the preserved-topology procedure. Rewriting P00 acceptance merely to make `install --auto` pass would violate preservation rules.
 
-The current Playbook supports isolated pinned runtime + explicit native task projection when mature native semantics must be retained. Bunova therefore uses that supported preservation path, not a partial copied runtime and not a second backlog.
+Bunova therefore uses the supported preservation path: one exact pinned runtime, one explicit native task projection and project-local reconciliation. It does not install a second managed source tree, replace accepted history or create another backlog.
 
 ## Native task authority and projection
 
-`TODO.md` remains the only mutable backlog/status owner. `scripts/executionkit/project-tasks.mjs` regenerates `.executionkit/task-projection.json` whenever ExecutionKit loads tasks. The projection declares hashes for `TODO.md` and `TODO_ARCHIVE.md`; stale source hashes invalidate it.
+`TODO.md` remains the only mutable backlog/status owner. `scripts/executionkit/project-tasks.mjs` regenerates `.executionkit/task-projection.json` whenever ExecutionKit loads tasks. The projection declares hashes for `TODO.md` and `TODO_ARCHIVE.md`; stale source hashes invalidate it. The projector reads canonical state but never rewrites the source files.
 
 Bunova's established marker meanings are preserved rather than rewritten: `[ ]` PLANNED, `[~]` IMPLEMENTED, `[!]` BLOCKED, `[x]` ACCEPTED. The projector also understands `[R]` REVIEW_REQUIRED and `[B]` BLOCKED if introduced later. Derived task metadata supplies machine dependencies/tags/audit boundaries without owning status.
 
-The existing K00 vocabulary is reconciled as follows: `K00-001` is tooling-bootstrap/intake; `K00-002` is project-study; `K00-005` carries Premium Experience applicability/construction reconciliation; `K00-009` is SEO applicability; `K00-019` is `Action: audit` with phase boundary; `K00-GATE` is activation. P01 and every later product phase are deterministically dependency-gated behind K00 and the previous phase gate.
+The existing K00 vocabulary is reconciled as follows: `K00-001` is tooling-bootstrap/intake; `K00-002` is project-study; `K00-005` carries Premium Experience applicability/construction reconciliation; `K00-009` is SEO applicability; `K00-019` is `Action: audit` with phase boundary; `K00-GATE` is activation. For P01+, the first normal task waits on the previous phase gate, subsequent normal tasks are sequential, the phase audit waits on all normal tasks and the phase gate waits on the audit. P01 therefore cannot open before `K00-GATE`.
 
 ## Native authority preserved
 
-Root `AGENTS.md`, native product/architecture/domain/experience/delivery/governance docs, contracts, rules, skills, agents and workflows remain Bunova product truth. `.agents/manifest.json` registers/routes them instead of replacing them with generic resources.
+Root `AGENTS.md`, native product/architecture/domain/experience/delivery/governance docs, contracts, rules, skills, agents and workflows remain Bunova product truth. `.agents/manifest.json` registers/routes them instead of replacing them with generic resources. K00 uses a dedicated ExecutionKit integrator route; the independent audit route remains separate and higher-priority for audit lifecycle actions.
 
 ## Eight-system applicability
 
@@ -41,7 +41,7 @@ SEO scope is only Bunova-owned public commercial/acquisition pages. Authenticate
 
 Repository files alone do not prove submodule initialization, Node validator execution, Antigravity integration, MCP handshake/tool calls, Memory MCP availability, macOS/Windows self-hosted runner registration, future Laravel Boost/Dart MCP applicability or physical printer/router/payment/device behavior. Until direct current evidence exists these remain NOT_RUN/NOT_CONFIGURED/NOT_APPLICABLE as appropriate, never PASS.
 
-Missing optional fleet/control-plane connectivity is degraded observability, not canonical execution failure.
+The repository-level static reconciliation has verified the canonical runtime path and required v3 project-surface schemas/docs against the pinned source, but executable project validators remain direct runtime evidence and cannot be inferred from static presence. Missing optional fleet/control-plane connectivity is degraded observability, not canonical execution failure.
 
 ## Activation conditions
 

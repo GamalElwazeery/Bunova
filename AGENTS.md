@@ -13,17 +13,19 @@ This file is mandatory reading for every human or AI agent working in this repos
 
 ## 2. ExecutionKit adoption boundary
 
-The exact runtime source is pinned at `.executionkit/runtime/AI-ExecutionKit`. Do not edit upstream runtime files from Bunova. Project-specific reconciliation belongs in root/project files.
+The exact runtime source is pinned at `.executionkit/runtime/kit` and `execution.config.json#installation.runtimePath` must remain identical to that canonical installed path. Do not edit upstream runtime files from Bunova. Project-specific reconciliation belongs in root/project files.
 
 Bunova preserves its native TODO semantics using `scripts/executionkit/project-tasks.mjs` with `projection-json`; `.executionkit/task-projection.json` is derived/hash-bound and never mutable authority. Existing Bunova `[!]` means BLOCKED; adoption does not rewrite historical task bytes merely to mimic generic marker syntax.
 
-K00 is mandatory. `K00-019` is the independent deep-integration audit boundary and `K00-GATE` is activation. P01 product implementation is forbidden until K00 activation is accepted and current validator/host evidence supports it.
+K00 is mandatory. K00 work routes through the dedicated `role.executionkit-integrator`; `K00-019` remains an independently routed deep-integration audit boundary and `K00-GATE` is activation. P01 product implementation is forbidden until K00 activation is accepted and current validator/host evidence supports it.
 
 ## 3. Canonical backlog and task selection
 
 `TODO.md` is the sole mutable execution/backlog authority. Do not create shadow TODOs, hidden backlogs, issue queues, private execution lists, state-owned tasks or checklist mirrors that can drift.
 
 Execute one lifecycle action at a time on the earliest dependency-ready eligible task. A `/goal` host loop may persist the session but never chooses work. If objectively blocked, record the exact blocker in canonical state and proceed only to dependency-independent eligible work.
+
+The Bunova projection preserves K00's explicit dependency chain and makes product phases sequential: the first normal task in a phase waits on the previous phase gate, each subsequent normal task waits on its predecessor, the phase audit waits on all normal tasks, and the phase gate waits on the audit. Do not bypass that order from prose or host state.
 
 After every accepted task transition, update `TODO.md` immediately, synchronize stable authorities if truth changed, checkpoint State OS and resolve the next action afresh.
 
