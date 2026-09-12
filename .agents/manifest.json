@@ -996,7 +996,7 @@
     "oneLifecycleActionAtATime": true
   },
   "compatibility": {
-    "executionKitSource": "fb49bfa3a16995b4ea785ed6ca66d0da808032c8",
+    "executionKitSource": "5a9eda4ab2159f93cca9867b492fe9ceb65ce261",
     "nativeAuthoritiesPreserved": true
   }
 }
