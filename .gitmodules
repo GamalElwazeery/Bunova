@@ -1,4 +1,4 @@
-[submodule ".executionkit/runtime/AI-ExecutionKit"]
-	path = .executionkit/runtime/AI-ExecutionKit
+[submodule ".executionkit/runtime/kit"]
+	path = .executionkit/runtime/kit
 	url = https://github.com/Elwazeery/AI-ExcutionKit.git
 	branch = main
