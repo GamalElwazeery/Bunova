@@ -38,9 +38,9 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [x] `P00-017` Add native Bunova rules, skills, agents and workflows. **Accept:** they guide work without becoming a shadow backlog.
 - [x] `P00-018` Record accepted ADRs for capability architecture, unified billing, modular-monolith first, offline-first clients, Menuza layer and Restaurant reuse.
 - [x] `P00-019` Create implementation readiness checklist and traceability/status/DoD authorities.
-- [ ] `P00-020` Perform final planning cross-reference audit after canonical TODO creation. **Depends:** P00-001..019. **Accept:** every referenced path exists; phase numbers/ownership/contracts/tasks have no contradiction; missing links are repaired.
-- [ ] `P00-021` Run planning completeness audit against `IMPLEMENTATION_READINESS_CHECKLIST.md`. **Depends:** P00-020. **Accept:** no critical behavior is left as untracked TBD; every future implementation domain has canonical tasks and gate coverage.
-- [ ] `P00-GATE` Close native planning gate. **Depends:** P00-020..021. **Evidence:** cross-reference/completeness audit clean. **Next:** K00 only; product implementation remains blocked.
+- [x] `P00-020` Perform final planning cross-reference audit after canonical TODO creation. **Depends:** P00-001..019. **Evidence:** `docs/05-governance/NATIVE_PLANNING_AUDIT.md`; repository tree checked, K00 sequencing/readiness mismatch and café-specific explicitness gaps repaired.
+- [x] `P00-021` Run planning completeness audit against `IMPLEMENTATION_READINESS_CHECKLIST.md`. **Depends:** P00-020. **Evidence:** no unresolved critical `TBD`; future implementation domains have canonical phase/task coverage and all identified planning P1 gaps were corrected.
+- [x] `P00-GATE` Close native planning gate. **Depends:** P00-020..021. **Evidence:** `docs/05-governance/NATIVE_PLANNING_AUDIT.md` clean after corrections. **Next:** K00 only; product implementation remains blocked until K00 closes.
 
 ---
 
@@ -180,7 +180,8 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P04-014` Implement realtime venue/session updates with durable server truth and reconnect refresh.
 - [ ] `P04-015` Implement offline cached venue projection and controlled session/order operations permitted by policy; detect exclusive occupancy conflict.
 - [ ] `P04-016` Add concurrency tests for double-open, transfer collision, close with unpaid bill and waiter reassignment.
-- [ ] `P04-AUDIT` Audit visual floor UX, session integrity, realtime/offline collision and table-service workflow.
+- [ ] `P04-017` Implement configurable table/zone/room minimum-spend and cover-charge policies (per session/per guest/daypart) through canonical Billing, with customer-visible explanation, Menuza exposure where applicable, and permission/reason/audit for waiver. **Accept:** no hidden total or price mutation; split/merge/refund behavior remains reconcilable.
+- [ ] `P04-AUDIT` Audit visual floor UX, session integrity, minimum-spend/cover behavior, realtime/offline collision and table-service workflow.
 - [ ] `P04-GATE` Close venue/session phase.
 
 ---
@@ -246,11 +247,15 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P07-005` Implement station/zone/table/gaming assignment and routing/default implications.
 - [ ] `P07-006` Implement quick operational actor switching/PIN or approved device unlock design without bypassing server authorization.
 - [ ] `P07-007` Implement tip attribution/pooling policies and reporting hooks.
-- [ ] `P07-008` Implement optional commission rule primitives only for operational use; do not create payroll ERP.
+- [ ] `P07-008` Implement optional commission rule primitives only for operational use; do not create statutory payroll ERP.
 - [ ] `P07-009` Implement staff meal/drink/complimentary allowance with explicit bill/stock/reason treatment.
 - [ ] `P07-010` Build staff/admin roster, assignment and permission UX with clear branch scope.
 - [ ] `P07-011` Build operational staff profile metrics using contextual service/production signals and avoid harmful simplistic ranking.
-- [ ] `P07-AUDIT` Staff permission/privacy/offline/UX audit.
+- [ ] `P07-012` Implement Payroll-Lite workforce-cost basis per staff/period: monthly, daily, hourly or shift-based wage with effective dates and branch assignment. **Accept:** rate changes preserve historical period explanation and do not pretend to implement statutory payroll compliance.
+- [ ] `P07-013` Implement approved overtime/extra shifts, advances/loans, bonuses and deductions as auditable workforce-cost movements with reason/permission and correction history.
+- [ ] `P07-014` Implement payout/settlement records and period summary showing earned basis, additions, deductions, advances and paid/outstanding amount; prohibit destructive balance edits.
+- [ ] `P07-015` Build manager/owner Payroll-Lite UX and staff-cost analytics/export with privacy permissions; test attendance linkage, partial period, corrections and branch transfer cases.
+- [ ] `P07-AUDIT` Staff permission/privacy/offline/Payroll-Lite/UX audit.
 - [ ] `P07-GATE` Close staff operations phase.
 
 ---
@@ -321,7 +326,10 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P10-014` Build router outage/provision failure resolution: retry/refund/reissue according to policy; never fake activation.
 - [ ] `P10-015` Add security tests for credential exposure, authorization, forged voucher/context and adapter replay.
 - [ ] `P10-016` Test time/data/quota expiry, duplicate provisioning, router unreachable/recovery, revocation and reconciliation.
-- [ ] `P10-AUDIT` Wi-Fi commercial/security/router resilience audit.
+- [ ] `P10-017` Implement controlled batch voucher/card generation by package + branch/router/SSID scope + quantity, preserving each voucher's lifecycle and generation actor/time. **Accept:** generating a batch alone creates no revenue.
+- [ ] `P10-018` Implement printable/exportable Wi-Fi card sheets plus permissioned/audited reprint/export; clearly mark used/revoked/expired credentials and protect codes from ordinary unauthorized access.
+- [ ] `P10-019` Test batch uniqueness, duplicate print/export, partial sale/activation, revocation, router drift and secure disposal/reissue scenarios.
+- [ ] `P10-AUDIT` Wi-Fi commercial/security/router/batch-card resilience audit.
 - [ ] `P10-GATE` Close Wi-Fi OS phase.
 
 ---
@@ -389,7 +397,9 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P13-014` Build customer program balance/history and support correction with permission/audit rather than direct edit.
 - [ ] `P13-015` Implement notification hooks for transactional membership/reward events respecting consent/channel rules.
 - [ ] `P13-016` Test duplicate earn/redeem, refund, expiry boundary, partial package consumption, concurrent devices and customer merge.
-- [ ] `P13-AUDIT` Stored-value/privacy/financial and POS usability audit.
+- [ ] `P13-017` Implement commercial coupon/promotion rule set for café use cases (happy hour, coffee+bakery combo, gaming+drink/meal, BOGO/second-item, student/member promotions) using canonical Billing allocations and deterministic precedence; do not mutate catalog prices invisibly.
+- [ ] `P13-018` Build promotion eligibility/explanation/admin UX and test stacking conflicts, schedule/daypart, channel/branch scope, refunds and entitlement combinations.
+- [ ] `P13-AUDIT` Stored-value/promotion/privacy/financial and POS usability audit.
 - [ ] `P13-GATE` Close customer programs phase.
 
 ---
