@@ -7,7 +7,7 @@ const root = path.resolve(process.argv[2] ?? '.');
 const sources = ['TODO.md', 'TODO_ARCHIVE.md'];
 const output = path.join(root, '.executionkit', 'task-projection.json');
 const markerState = {
-  ' ': 'PLANNED', '~': 'IMPLEMENTED', '!': 'BLOCKED', B: 'BLOCKED', b: 'BLOCKED',
+  ' ': 'READY', '~': 'IMPLEMENTED', '!': 'BLOCKED', B: 'BLOCKED', b: 'BLOCKED',
   R: 'REVIEW_REQUIRED', r: 'REVIEW_REQUIRED', x: 'ACCEPTED', X: 'ACCEPTED'
 };
 const k00Dependencies = {
@@ -87,7 +87,7 @@ function inferTags(id, title, phase) {
   return [...tags];
 }
 function parseEvidence(text, state, phase) {
-  const m = text.match(/\*\*Evidence:\*\*\s*([^]*?)(?=\s+\*\*|$)/i);
+  const m = text.match(/\*\*Evidence:\*\s*([^]*?)(?=\s+\*\*|$)/i);
   if (m?.[1]?.trim()) return m[1].trim();
   if (state === 'ACCEPTED' && phase === 'P00') return 'Pre-adoption accepted planning evidence preserved in Bunova git history and linked native planning authorities.';
   return 'PENDING';
@@ -109,7 +109,7 @@ for (const rel of sources) {
     if (!m) return;
     const [, marker, id, rest] = m;
     const title = rest.split(/\s+\*\*/)[0].trim();
-    const state = markerState[marker] ?? 'PLANNED';
+    const state = markerState[marker] ?? 'READY';
     tasks.push({
       id, title, state, phase: phase || id.split('-')[0], priority: phase === 'K00' ? 'P0' : 'P1',
       dependencies: [], contract: phase === 'K00' ? 'docs/executionkit/INTEGRATION_PLAN.md' : 'TODO.md',
