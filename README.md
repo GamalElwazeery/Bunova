@@ -16,10 +16,11 @@ A venue may enable only the capabilities it needs:
 - Barista / bar production
 - Kitchen production and KDS
 - Gaming and timed resources
-- Wi-Fi vouchers, quotas, and captive access
+- Wi-Fi vouchers, quotas, batch cards, and captive access
 - Shisha operations
 - Inventory, recipes, waste, and procurement
-- Loyalty, memberships, bundles, and gift value
+- Staff operations and optional Payroll-Lite workforce costing
+- Loyalty, promotions, memberships, bundles, and gift value
 - Reservations
 - Digital menu and online ordering through Menuza
 - Egypt fiscal/eReceipt compliance
@@ -35,18 +36,20 @@ Menuza remains the customer-facing demand layer for digital menu, QR-context ord
 
 ## Repository state
 
-This repository begins as a **planning-first repository**. Product implementation must not begin until the canonical planning gates are satisfied.
+This repository is **planning-first**. The native Bunova planning corpus and `P00-GATE` are complete. Product implementation is still intentionally blocked.
 
-The AI-ExecutionKit is intentionally **not integrated in this planning round**. Native Bunova planning authorities are being established first; the next integration round will install and deeply merge the kit without replacing or weakening Bunova-specific authority.
+The next mandatory frontier is `K00`: deep integration of the **current live AI-ExecutionKit** through its supported installer and authorities. The kit must merge with, register, and route Bunova-native agents/skills/rules/workflows/contracts without replacing them or creating a second backlog. Only after `K00-GATE` closes may `P01` product implementation begin.
 
 ## Canonical entry points
 
 - [`TODO.md`](TODO.md) — sole mutable execution/backlog authority.
 - [`AGENTS.md`](AGENTS.md) — mandatory operating instructions for any coding/planning agent.
+- [`docs/PLANNING_INDEX.md`](docs/PLANNING_INDEX.md) — navigation across the planning corpus.
 - [`docs/00-product/PRODUCT_VISION.md`](docs/00-product/PRODUCT_VISION.md) — product intent and success model.
 - [`docs/01-architecture/DOMAIN_MAP.md`](docs/01-architecture/DOMAIN_MAP.md) — domain and ownership map.
-- [`docs/04-delivery/PHASE_PLAN.md`](docs/04-delivery/PHASE_PLAN.md) — delivery sequence and phase gates.
+- [`docs/04-delivery/PHASE_PLAN.md`](docs/04-delivery/PHASE_PLAN.md) — P00 → K00 → P01..P21 delivery sequence.
 - [`docs/05-governance/TRACEABILITY_CONTRACT.md`](docs/05-governance/TRACEABILITY_CONTRACT.md) — plan → task → implementation → evidence contract.
+- [`docs/05-governance/NATIVE_PLANNING_AUDIT.md`](docs/05-governance/NATIVE_PLANNING_AUDIT.md) — native-planning closure evidence and corrections.
 
 ## Planned implementation baseline
 
@@ -71,7 +74,7 @@ These are planning defaults, not permission to start coding before readiness gat
 2. Every executable task must be deep enough to execute without inventing product behavior.
 3. Every task must trace to product/domain/contract/rule evidence.
 4. Presets are onboarding conveniences; capabilities are the architecture.
-5. Financial history, fiscal history, stock movements, and audit history are never modeled as casually mutable CRUD.
+5. Financial history, fiscal history, stock movements, timed usage, stored value, and audit history are never modeled as casually mutable CRUD.
 6. Offline operation is a first-class product property for operational surfaces, not a later fallback.
 7. Shared functionality with Restaurant/Menuza must use explicit ownership and integration contracts; no silent duplication.
 8. Premium UX means operational speed, clarity, recovery, accessibility, RTL correctness, and state completeness—not decoration.
@@ -80,4 +83,4 @@ These are planning defaults, not permission to start coding before readiness gat
 
 ## Status
 
-**Planning in progress. Implementation not authorized yet.**
+**Native planning complete (`P00-GATE` closed). Next: `K00` AI-ExecutionKit deep integration. Product implementation remains blocked until K00 closes.**
