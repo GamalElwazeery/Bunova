@@ -10,7 +10,7 @@ Bunova pins the exact current ExecutionKit source as `.executionkit/runtime/kit`
 
 `TODO.md` remains canonical for mutable task state. `scripts/executionkit/project-tasks.mjs` regenerates `.executionkit/task-projection.json`; the projection is hash-bound to `TODO.md` and `TODO_ARCHIVE.md`, and the adapter reads but never rewrites canonical task state.
 
-Bunova native markers remain authoritative: `[ ]` PLANNED, `[~]` IMPLEMENTED, `[!]` BLOCKED, `[x]` ACCEPTED. Optional `[R]` and `[B]` are understood for compatibility, but adoption does not rewrite historical semantics. The projection adds deterministic dependency/routing metadata without owning mutable state.
+Bunova native source markers remain authoritative while the projection translates them into ExecutionKit lifecycle states: `[ ]` → `READY`, `[~]` → `IMPLEMENTED`, `[!]`/`[B]` → `BLOCKED`, `[R]` → `REVIEW_REQUIRED`, `[x]` → `ACCEPTED`. `[ ]` still means not implemented in canonical Markdown; projecting it as `READY` makes the earliest dependency-satisfied open task executable by the pinned runtime. The projection adds deterministic dependency/routing metadata without owning mutable state.
 
 For the pre-existing K00 task vocabulary, `K00-019` is the independent phase audit boundary and `K00-GATE` is the activation boundary. K00 preserves its explicit dependency chain. For P01+, the first normal task waits on the previous phase gate, each subsequent normal task waits on its predecessor, the phase audit waits on all normal tasks, and the phase gate waits on the audit. P01 therefore starts only after `K00-GATE`.
 
