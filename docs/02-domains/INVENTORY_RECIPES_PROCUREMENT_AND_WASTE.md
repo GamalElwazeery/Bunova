@@ -43,6 +43,12 @@ Branch/store transfers have request/dispatch/receive/variance states and create 
 
 Supplier -> PO -> partial/full receipt -> stock movement -> supplier invoice/reference metadata. Bunova initially tracks operational procurement, not general-ledger accounting.
 
+## Supplier operational dues
+
+Received supplier invoices may create an operational payable amount with due date/terms. Supplier settlements/payments are append-oriented movements referencing one or more invoices/receipts; partial payment and credit/return adjustments remain traceable. Supplier statement shows opening operational balance, invoices/credits, payments and closing balance for the selected scope.
+
+This feature exists so the café can answer “إحنا علينا كام للمورد؟” from operations without pretending Bunova is a statutory accounts-payable/general-ledger suite. Manual adjustment/write-off requires explicit permission, reason and audit, and launch-market accounting/tax treatment must be validated.
+
 ## Costing
 
 Maintain moving/weighted or configured costing policy centrally. Product theoretical COGS uses recipe and cost snapshots/projections; reports distinguish theoretical versus waste/variance effects.
