@@ -2,11 +2,7 @@
   "$schema": "../.executionkit/runtime/kit/schemas/agent-manifest.schema.json",
   "schemaVersion": "2.2.0",
   "standardVersion": "3.0.0",
-  "taskAuthority": {
-    "path": "TODO.md",
-    "mutableStateOwner": "TODO.md",
-    "shadowBacklogsForbidden": true
-  },
+  "taskAuthority": {"path":"TODO.md","mutableStateOwner":"TODO.md","shadowBacklogsForbidden":true},
   "resources": {
     "roles": [
       {"id":"role.executionkit-integrator","path":"agents/executionkit-integrator.md","native":true},
@@ -18,7 +14,17 @@
       {"id":"role.platform-operations","path":"agents/platform-operations-engineer.md","native":true},
       {"id":"role.ux-reviewer","path":"agents/ux-design-system-reviewer.md","native":true},
       {"id":"role.qa-auditor","path":"agents/qa-auditor.md","native":true},
-      {"id":"role.security-release","path":"agents/security-release-engineer.md","native":true}
+      {"id":"role.security-release","path":"agents/security-release-engineer.md","native":true},
+      {"id":"adapter.antigravity.role.executionkit-integrator","path":".agents/agents/ek-role-executionkit-integrator.md","adapterFor":"role.executionkit-integrator","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.product-planner","path":".agents/agents/ek-role-product-planner.md","adapterFor":"role.product-planner","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.domain-architect","path":".agents/agents/ek-role-domain-architect.md","adapterFor":"role.domain-architect","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.backend-engineer","path":".agents/agents/ek-role-backend-engineer.md","adapterFor":"role.backend-engineer","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.flutter-operations","path":".agents/agents/ek-role-flutter-operations.md","adapterFor":"role.flutter-operations","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.integration-engineer","path":".agents/agents/ek-role-integration-engineer.md","adapterFor":"role.integration-engineer","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.platform-operations","path":".agents/agents/ek-role-platform-operations.md","adapterFor":"role.platform-operations","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.ux-reviewer","path":".agents/agents/ek-role-ux-reviewer.md","adapterFor":"role.ux-reviewer","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.qa-auditor","path":".agents/agents/ek-role-qa-auditor.md","adapterFor":"role.qa-auditor","adapterHost":"antigravity","native":true},
+      {"id":"adapter.antigravity.role.security-release","path":".agents/agents/ek-role-security-release.md","adapterFor":"role.security-release","adapterHost":"antigravity","native":true}
     ],
     "skills": [
       {"id":"skill.executionkit-integration","path":"skills/executionkit-deep-integration.md","native":true},
@@ -68,59 +74,24 @@
       {"id":"contract.unified-billing","path":"contracts/UNIFIED_BILLING_CONTRACT.md","native":true},
       {"id":"contract.wifi-router","path":"contracts/WIFI_ROUTER_ADAPTER_CONTRACT.md","native":true}
     ],
-    "templates": [
-      {"id":"template.handoff","path":".agents/templates/handoff.md"}
-    ]
+    "templates": [{"id":"template.handoff","path":".agents/templates/handoff.md"}]
   },
   "routing": {
-    "strategy": "priority-first-match",
-    "routes": [
-      {
-        "id":"route.audit","priority":100,"when":{"actions":["audit"]},
-        "use":{"roles":["role.qa-auditor"],"skills":["skill.repository-recon","skill.audit-acceptance","skill.test-evidence","skill.premium-experience"],"rules":["rule.test-audit","rule.repository-execution"],"workflows":["workflow.deep-audit"],"contracts":["contract.audit-event"]}
-      },
-      {
-        "id":"route.executionkit-integration","priority":99,"when":{"phases":["K00"]},
-        "use":{"roles":["role.executionkit-integrator"],"skills":["skill.executionkit-integration","skill.repository-recon","skill.product-traceability","skill.state-rehydration"],"rules":["rule.repository-execution","rule.test-audit","rule.security-privacy"],"workflows":["workflow.start-resume","workflow.integration-change"],"contracts":["contract.audit-event"]}
-      },
-      {
-        "id":"route.review","priority":95,"when":{"actions":["review","revalidate","correct"]},
-        "use":{"roles":["role.qa-auditor","role.ux-reviewer","role.security-release"],"skills":["skill.audit-acceptance","skill.premium-experience","skill.test-evidence"],"rules":["rule.test-audit","rule.security-privacy","rule.ux-content-localization"],"workflows":["workflow.execute-task"]}
-      },
-      {
-        "id":"route.platform","priority":90,"when":{"actions":["implement"],"tagsAny":["platform","saas"]},
-        "use":{"roles":["role.platform-operations"],"skills":["skill.saas-entitlement","skill.laravel-domain","skill.product-traceability"],"rules":["rule.domain-data","rule.security-privacy"],"contracts":["contract.platform-entitlement","contract.capability-config"]}
-      },
-      {
-        "id":"route.flutter","priority":88,"when":{"actions":["implement"],"tagsAny":["flutter","offline"]},
-        "use":{"roles":["role.flutter-operations"],"skills":["skill.flutter-offline","skill.state-rehydration","skill.cafe-ux"],"rules":["rule.offline-realtime","rule.ux-content-localization"],"contracts":["contract.offline-sync"]}
-      },
-      {
-        "id":"route.integration","priority":86,"when":{"actions":["implement"],"tagsAny":["integration"]},
-        "use":{"roles":["role.integration-engineer"],"skills":["skill.integration-contracts","skill.product-traceability"],"rules":["rule.security-privacy","rule.domain-data"],"workflows":["workflow.integration-change"],"contracts":["contract.idempotency-replay","contract.menuza","contract.payment-provider","contract.fiscal-adapter","contract.wifi-router","contract.restaurant-interop"]}
-      },
-      {
-        "id":"route.ui","priority":84,"when":{"actions":["implement"],"tagsAny":["ui","premium"]},
-        "use":{"roles":["role.backend-engineer"],"skills":["skill.cafe-ux","skill.premium-experience","skill.content-depth"],"rules":["rule.ux-content-localization"],"workflows":["workflow.execute-task"]}
-      },
-      {
-        "id":"route.backend","priority":80,"when":{"actions":["implement"],"tagsAny":["backend"]},
-        "use":{"roles":["role.backend-engineer"],"skills":["skill.laravel-domain","skill.product-traceability"],"rules":["rule.domain-data","rule.repository-execution"],"workflows":["workflow.execute-task"],"contracts":["contract.capability-config"]}
-      },
-      {
-        "id":"route.planning","priority":78,"when":{"actions":["implement"],"tagsAny":["planning","architecture"]},
-        "use":{"roles":["role.product-planner","role.domain-architect"],"skills":["skill.repository-recon","skill.product-traceability"],"rules":["rule.repository-execution","rule.domain-data"]}
-      },
-      {
-        "id":"route.release","priority":76,"when":{"actions":["implement"],"tagsAny":["launch","security"]},
-        "use":{"roles":["role.security-release"],"skills":["skill.launch-readiness","skill.test-evidence"],"rules":["rule.security-privacy","rule.test-audit"],"workflows":["workflow.release-rollback"]}
-      },
-      {
-        "id":"route.content-seo","priority":74,"when":{"actions":["implement"],"tagsAny":["content","seo"]},
-        "use":{"roles":["role.product-planner"],"skills":["skill.content-depth","skill.seo-public"],"rules":["rule.ux-content-localization"]}
-      }
+    "strategy":"priority-first-match",
+    "routes":[
+      {"id":"route.audit","priority":100,"when":{"actions":["audit"]},"use":{"roles":["role.qa-auditor"],"skills":["skill.repository-recon","skill.audit-acceptance","skill.test-evidence","skill.premium-experience"],"rules":["rule.test-audit","rule.repository-execution"],"workflows":["workflow.deep-audit"],"contracts":["contract.audit-event"]}},
+      {"id":"route.executionkit-integration","priority":99,"when":{"phases":["K00"]},"use":{"roles":["role.executionkit-integrator"],"skills":["skill.executionkit-integration","skill.repository-recon","skill.product-traceability","skill.state-rehydration"],"rules":["rule.repository-execution","rule.test-audit","rule.security-privacy"],"workflows":["workflow.start-resume","workflow.integration-change"],"contracts":["contract.audit-event"]}},
+      {"id":"route.review","priority":95,"when":{"actions":["review","revalidate","correct"]},"use":{"roles":["role.qa-auditor","role.ux-reviewer","role.security-release"],"skills":["skill.audit-acceptance","skill.premium-experience","skill.test-evidence"],"rules":["rule.test-audit","rule.security-privacy","rule.ux-content-localization"],"workflows":["workflow.execute-task"]}},
+      {"id":"route.platform","priority":90,"when":{"actions":["implement"],"tagsAny":["platform","saas"]},"use":{"roles":["role.platform-operations"],"skills":["skill.saas-entitlement","skill.laravel-domain","skill.product-traceability"],"rules":["rule.domain-data","rule.security-privacy"],"contracts":["contract.platform-entitlement","contract.capability-config"]}},
+      {"id":"route.flutter","priority":88,"when":{"actions":["implement"],"tagsAny":["flutter","offline"]},"use":{"roles":["role.flutter-operations"],"skills":["skill.flutter-offline","skill.state-rehydration","skill.cafe-ux"],"rules":["rule.offline-realtime","rule.ux-content-localization"],"contracts":["contract.offline-sync"]}},
+      {"id":"route.integration","priority":86,"when":{"actions":["implement"],"tagsAny":["integration"]},"use":{"roles":["role.integration-engineer"],"skills":["skill.integration-contracts","skill.product-traceability"],"rules":["rule.security-privacy","rule.domain-data"],"workflows":["workflow.integration-change"],"contracts":["contract.idempotency-replay","contract.menuza","contract.payment-provider","contract.fiscal-adapter","contract.wifi-router","contract.restaurant-interop"]}},
+      {"id":"route.ui","priority":84,"when":{"actions":["implement"],"tagsAny":["ui","premium"]},"use":{"roles":["role.backend-engineer"],"skills":["skill.cafe-ux","skill.premium-experience","skill.content-depth"],"rules":["rule.ux-content-localization"],"workflows":["workflow.execute-task"]}},
+      {"id":"route.backend","priority":80,"when":{"actions":["implement"],"tagsAny":["backend"]},"use":{"roles":["role.backend-engineer"],"skills":["skill.laravel-domain","skill.product-traceability"],"rules":["rule.domain-data","rule.repository-execution"],"workflows":["workflow.execute-task"],"contracts":["contract.capability-config"]}},
+      {"id":"route.planning","priority":78,"when":{"actions":["implement"],"tagsAny":["planning","architecture"]},"use":{"roles":["role.product-planner","role.domain-architect"],"skills":["skill.repository-recon","skill.product-traceability"],"rules":["rule.repository-execution","rule.domain-data"]}},
+      {"id":"route.release","priority":76,"when":{"actions":["implement"],"tagsAny":["launch","security"]},"use":{"roles":["role.security-release"],"skills":["skill.launch-readiness","skill.test-evidence"],"rules":["rule.security-privacy","rule.test-audit"],"workflows":["workflow.release-rollback"]}},
+      {"id":"route.content-seo","priority":74,"when":{"actions":["implement"],"tagsAny":["content","seo"]},"use":{"roles":["role.product-planner"],"skills":["skill.content-depth","skill.seo-public"],"rules":["rule.ux-content-localization"]}}
     ],
-    "supplements": [
+    "supplements":[
       {"id":"supplement.financial","priority":60,"when":{"tagsAny":["financial","fiscal"]},"use":{"skills":["skill.financial-time-stock"],"rules":["rule.financial-fiscal"],"contracts":["contract.unified-billing","contract.fiscal-adapter"]}},
       {"id":"supplement.offline","priority":59,"when":{"tagsAny":["offline"]},"use":{"skills":["skill.state-rehydration"],"rules":["rule.offline-realtime"],"contracts":["contract.offline-sync"]}},
       {"id":"supplement.premium","priority":58,"when":{"tagsAny":["premium","ui"]},"use":{"skills":["skill.premium-experience","skill.cafe-ux"],"rules":["rule.ux-content-localization"]}},
@@ -129,29 +100,9 @@
       {"id":"supplement.launch","priority":55,"when":{"tagsAny":["launch"]},"use":{"skills":["skill.launch-readiness","skill.test-evidence"]}},
       {"id":"supplement.state","priority":54,"when":{"tagsAny":["state","continuity"]},"use":{"skills":["skill.state-rehydration"]}}
     ],
-    "fallback": {
-      "roles":["role.product-planner","role.domain-architect"],
-      "skills":["skill.repository-recon","skill.product-traceability","skill.state-rehydration"],
-      "rules":["rule.repository-execution","rule.domain-data"],
-      "workflows":["workflow.start-resume","workflow.phase-close"],
-      "contracts":["contract.capability-config"],
-      "templates":["template.handoff"]
-    }
+    "fallback":{"roles":["role.product-planner","role.domain-architect"],"skills":["skill.repository-recon","skill.product-traceability","skill.state-rehydration"],"rules":["rule.repository-execution","rule.domain-data"],"workflows":["workflow.start-resume","workflow.phase-close"],"contracts":["contract.capability-config"],"templates":["template.handoff"]}
   },
-  "resolution": {
-    "minimalContext": true,
-    "expandSkillDependencies": true,
-    "deterministicTieBreak": ["priority","manifest-order","resource-id"]
-  },
-  "delegation": {
-    "mode":"SEQUENTIAL",
-    "coordinatorRole":"role.product-planner",
-    "reviewSeparationRequired":true,
-    "allowBoundedHostDelegation":true,
-    "oneLifecycleActionAtATime":true
-  },
-  "compatibility": {
-    "executionKitSource":"fb49bfa3a16995b4ea785ed6ca66d0da808032c8",
-    "nativeAuthoritiesPreserved":true
-  }
+  "resolution":{"minimalContext":true,"expandSkillDependencies":true,"deterministicTieBreak":["priority","manifest-order","resource-id"]},
+  "delegation":{"mode":"SEQUENTIAL","coordinatorRole":"role.product-planner","reviewSeparationRequired":true,"allowBoundedHostDelegation":true,"oneLifecycleActionAtATime":true},
+  "compatibility":{"executionKitSource":"fb49bfa3a16995b4ea785ed6ca66d0da808032c8","nativeAuthoritiesPreserved":true}
 }
