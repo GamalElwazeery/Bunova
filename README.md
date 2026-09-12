@@ -36,14 +36,19 @@ Menuza remains the customer-facing demand layer for digital menu, QR-context ord
 
 ## Repository state
 
-This repository is **planning-first**. The native Bunova planning corpus and `P00-GATE` are complete. Product implementation is still intentionally blocked.
+This repository remains **planning-first**. The native Bunova planning corpus and `P00-GATE` are complete. Product implementation is still intentionally blocked.
 
-The next mandatory frontier is `K00`: deep integration of the **current live AI-ExecutionKit** through its supported installer and authorities. The kit must merge with, register, and route Bunova-native agents/skills/rules/workflows/contracts without replacing them or creating a second backlog. Only after `K00-GATE` closes may `P01` product implementation begin.
+The repository-side `K00` AI-ExecutionKit integration is now installed against exact source pin `fb49bfa3a16995b4ea785ed6ca66d0da808032c8` (VERSION 3.0.0) at `.executionkit/runtime/kit`. Bunova-native authorities are preserved and routed through Agent OS; the Antigravity workspace plugin, hooks, MCP configuration and native role/skill adapters are present; Execution/Agent/Content/SEO/Audit/Test/Launch plus cross-cutting State OS and Premium Experience are reconciled at repository/configuration level.
+
+`K00` is **not yet activated**. A real initialized Antigravity/runtime-capable checkout must still materialize the private submodule, regenerate the native task projection, run the applicable validators/routing checks, prove State checkpoint → rehydrate → Amnesia, and prove Antigravity plugin/hook/MCP behavior. Only after independent `K00-019` acceptance and `K00-GATE` activation may `P01` product implementation begin. Static repository presence is never treated as host/runtime PASS.
 
 ## Canonical entry points
 
-- [`TODO.md`](TODO.md) — sole mutable execution/backlog authority.
+- [`TODO.md`](TODO.md) — sole mutable execution/backlog authority and normal owner/agent entrypoint.
 - [`AGENTS.md`](AGENTS.md) — mandatory operating instructions for any coding/planning agent.
+- [`docs/executionkit/ADOPTION.md`](docs/executionkit/ADOPTION.md) — exact ExecutionKit adoption/preservation authority.
+- [`scripts/executionkit/README.md`](scripts/executionkit/README.md) — pinned runtime/host acceptance runbook; commands are agent-owned diagnostics, not a separate owner checklist.
+- [`docs/executionkit/TOOLING_STATUS.md`](docs/executionkit/TOOLING_STATUS.md) — static vs host/runtime evidence boundary.
 - [`docs/PLANNING_INDEX.md`](docs/PLANNING_INDEX.md) — navigation across the planning corpus.
 - [`docs/00-product/PRODUCT_VISION.md`](docs/00-product/PRODUCT_VISION.md) — product intent and success model.
 - [`docs/01-architecture/DOMAIN_MAP.md`](docs/01-architecture/DOMAIN_MAP.md) — domain and ownership map.
@@ -83,4 +88,4 @@ These are planning defaults, not permission to start coding before readiness gat
 
 ## Status
 
-**Native planning complete (`P00-GATE` closed). Next: `K00` AI-ExecutionKit deep integration. Product implementation remains blocked until K00 closes.**
+**Native planning is complete. Repository-side ExecutionKit integration is installed and statically reconciled. Current frontier: K00 host/runtime validation → independent audit → activation. Product implementation remains blocked until `K00-GATE` closes.**
