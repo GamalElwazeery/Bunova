@@ -1,0 +1,1 @@
+{"executionkit-context":{"PreInvocation":[{"type":"command","command":"node .executionkit/runtime/kit/bin/antigravity-hook.mjs","timeout":10}]}}
