@@ -1,9 +1,12 @@
 # Bunova Delivery Phase Plan
 
-This plan defines the product sequence. `TODO.md` is the mutable execution authority and contains the executable task detail.
+This plan defines the product sequence. `TODO.md` is the sole mutable execution authority and contains the executable task detail.
 
 ## P00 — Repository truth and native planning closure
-Freeze product vocabulary, domain ownership, integration boundaries, architecture decisions, task semantics, acceptance standards and implementation-readiness evidence. AI-ExecutionKit integration is deliberately outside this round.
+Freeze product vocabulary, domain ownership, integration boundaries, architecture decisions, task semantics, acceptance standards and native implementation-readiness evidence. No product implementation is authorized by closing P00.
+
+## K00 — AI-ExecutionKit deep integration gate
+Dedicated next-round integration against the **current live AI-ExecutionKit**, using its supported installer and current system authorities. Preserve Bunova-native planning, merge agent/skill/rule/workflow/contract authority deeply, keep `TODO.md` as the only mutable backlog, register and route every applicable live kit system, and verify the integration independently. Product implementation remains blocked until K00 closes.
 
 ## P01 — Engineering foundation
 Laravel/backend and Flutter workspace foundations; environments; organization/branch tenancy; auth; roles; device/register identity; capability configuration; observability; localization; CI baseline.
@@ -12,10 +15,10 @@ Laravel/backend and Flutter workspace foundations; environments; organization/br
 Categories, items, variants, modifier groups, units, taxes, pricing rules, branch overrides, availability, media and Menuza publication contract.
 
 ## P03 — POS, orders and unified billing
-Counter/takeaway flows, cart/order lifecycle, billable-line abstraction, discounts, service charges, tips, cash/card/mixed tender, refunds/voids, receipts, cash drawers and shifts.
+Counter/takeaway flows, cart/order lifecycle, billable-line abstraction, discounts, service charges, minimum/cover charge hooks, tips, cash/card/mixed tender, refunds/voids, receipts, cash drawers and shifts.
 
 ## P04 — Venue, floors, tables and service sessions
-Visual floor structure, tables/rooms, occupancy/session lifecycle, transfers/merges/splits, waiter assignment, service requests and session-aware billing.
+Visual floor structure, tables/rooms, occupancy/session lifecycle, transfers/merges/splits, waiter assignment, service requests, configurable minimum-spend/cover policies and session-aware billing.
 
 ## P05 — Production OS
 Stations, routing, bar/barista workflow, kitchen/KDS interoperability, shisha-production hooks, preparation timers, ready/serve flow, re-fire/remake/cancel and production analytics.
@@ -24,7 +27,7 @@ Stations, routing, bar/barista workflow, kitchen/KDS interoperability, shisha-pr
 Stock ledger, stores, units/conversions, recipes/BOM, automatic consumption, waste, counts, transfers, suppliers, PO/receiving and COGS.
 
 ## P07 — Staff operations
-Operational staff, shifts/attendance hooks, table/station assignment, permissions, tips/commissions policy, staff consumption and operational performance signals.
+Operational staff, shifts/attendance hooks, table/station assignment, permissions, tips/commissions, staff consumption, optional workforce-cost/payroll-lite controls (wage basis, advances, deductions, overtime/payout evidence) and operational performance signals. Full HR/payroll compliance ERP remains out of scope.
 
 ## P08 — Timed Resource Engine
 Generic resource catalog, sessions, pause/resume/transfer, rate plans, rounding/minimum rules, packages, reservation linkage and unified bill integration.
@@ -33,7 +36,7 @@ Generic resource catalog, sessions, pause/resume/transfer, rate plans, rounding/
 Console/PC inventory, player/controller/room semantics, gaming rate models, packages/memberships, bookings, device-state workflows and order attachment.
 
 ## P10 — Wi-Fi OS
-Router adapter contract, MikroTik integration, hotspot packages, voucher issuance, time/data/speed quotas, captive portal handshake, guest entitlement, revocation and outage recovery.
+Router adapter contract, MikroTik integration, hotspot packages, individual/batch voucher issuance and printable cards, time/data/speed quotas, captive portal handshake, guest entitlement, revocation and outage recovery.
 
 ## P11 — Shisha and specialized café service
 Shisha catalog/modifiers/recipes, station workflow, coal/service requests, stock/costing and table/session integration.
@@ -42,7 +45,7 @@ Shisha catalog/modifiers/recipes, station workflow, coal/service requests, stock
 Catalog sync/publication, QR context, table online ordering, pickup/delivery entry, availability, pricing, payment/status callbacks, idempotency and recovery/reconciliation.
 
 ## P13 — Customer, loyalty, memberships and commercial packages
-Profiles/consent, points/stamps, rewards, prepaid bundles/credits, memberships, gift value, café/gaming combinations and entitlement consumption.
+Profiles/consent, points/stamps, rewards, coupons/promotions, prepaid bundles/credits, memberships, gift value, café/gaming combinations and entitlement consumption.
 
 ## P14 — Reservations and customer scheduling
 Tables, rooms and timed-resource reservations, deposits, capacity/conflict logic, no-show/cancel rules and arrival/session conversion.

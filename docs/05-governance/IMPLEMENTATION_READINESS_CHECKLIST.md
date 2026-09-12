@@ -1,20 +1,28 @@
 # Implementation Readiness Checklist
 
-Implementation frontier may open only when all applicable items are proven:
+## Native planning readiness (P00)
 
-- product vision/scope/archetypes stable;
-- canonical glossary and capability keys agreed;
-- domain map and ownership closed;
-- unified billing/time/session/offline architecture accepted;
-- Menuza/Restaurant/payment/fiscal/router boundaries accepted;
-- phase plan and dependency order consistent;
-- UX/surface/design/localization standards present;
-- security/test/audit/launch strategies present;
-- contracts/rules/skills/workflows/agents present and mutually consistent;
+P00 may close only when:
+
+- product vision/scope/archetypes are stable;
+- canonical glossary and capability model are agreed;
+- domain map and ownership are closed;
+- unified billing/time/session/offline architecture is accepted;
+- Menuza/Restaurant/payment/fiscal/router boundaries are accepted;
+- phase plan and dependency order are consistent;
+- UX/surface/design/localization standards are present;
+- security/test/audit/launch strategies are present;
+- contracts/rules/skills/workflows/agents are present and mutually consistent;
 - `TODO.md` contains executable deep tasks from repository initialization through production launch;
-- every TODO phase has dependencies, authorities, acceptance/evidence pattern and gate;
+- every TODO phase has authorities, acceptance/evidence intent and a gate;
 - no critical plan uses unresolved `TBD` as a substitute for a task;
-- planning cross-link audit finds no broken/missing authority references;
-- AI-ExecutionKit remains intentionally absent until its dedicated integration round.
+- planning cross-link/completeness audit finds no unresolved critical gap;
+- AI-ExecutionKit remains intentionally absent from the native-planning snapshot.
 
-P00 closes this checklist; only then may P01 implementation start.
+Closing P00 means **native planning is complete**, not that product implementation may begin.
+
+## Pre-implementation readiness (K00)
+
+After P00, the dedicated K00 round must integrate the **current live AI-ExecutionKit** and its supported installer/systems without overwriting Bunova-native authority. K00 must prove deep registration/routing, single `TODO.md` backlog authority, system compatibility and integration validation.
+
+**Only after both `P00-GATE` and `K00-GATE` are `[x]` may P01 product implementation begin.**

@@ -2,7 +2,7 @@
 
 ## Scope
 
-Bunova models operational staff required to run a café, without becoming a full payroll/HR system in the first frontier.
+Bunova models operational staff required to run a café without becoming a full HR/compliance payroll ERP in the first frontier.
 
 Typical roles: owner, branch manager, supervisor, cashier, waiter, barista, juice maker, chef/cook, kitchen helper, shisha worker, gaming supervisor, cleaner/service staff and delivery handoff staff.
 
@@ -27,10 +27,24 @@ Assignments affect routing/UI defaults, not immutable authorization unless permi
 
 Tip attribution can be pooled, staff-specific or disabled. Commission rules are optional and transparent. Staff meal/drink/complimentary consumption uses explicit reason/allowance rules and stock/billing treatment rather than invisible deletion.
 
+## Workforce cost / Payroll-Lite
+
+When enabled, Bunova may track operational workforce cost without pretending to be a statutory payroll/HR suite:
+
+- wage basis: monthly, daily, hourly or shift-based;
+- expected work/attendance link where configured;
+- overtime/extra-shift quantity and approved rate;
+- advances/loans paid to staff;
+- explicit deductions/bonuses with reason and approval;
+- payout records and period summary;
+- staff-cost analytics by branch/period.
+
+Every financial movement is auditable. Bunova must clearly label calculated payroll-lite summaries and avoid claiming tax/social-insurance/legal payroll compliance unless a future jurisdiction-specific module explicitly implements it.
+
 ## Performance signals
 
 Operational metrics may include service response, orders handled, preparation time, remakes and sales influence. These are decision-support metrics and must be contextualized; avoid simplistic leaderboards that encourage unsafe behavior.
 
 ## Sensitive actions
 
-Refund, void, discount override, price override, complimentary item, drawer action, shift variance approval, historical duration edit and stock adjustment all require granular permissions and audit.
+Refund, void, discount override, price override, complimentary item, drawer action, shift variance approval, historical duration edit, stock adjustment, wage change, advance, deduction and payout correction all require granular permissions and audit.

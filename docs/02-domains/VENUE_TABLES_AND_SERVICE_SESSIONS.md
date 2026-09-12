@@ -18,6 +18,12 @@ Opening a venue session records branch/resource, opened-by staff/device, guest c
 
 Closing requires all chargeable usage represented on bill(s), settlement policy satisfied, and required production/service items resolved.
 
+## Minimum-spend / cover policy
+
+A branch/zone/table/room/session may optionally enforce a configured cover or minimum-spend rule, including per-session or per-guest basis and schedule/daypart applicability. The rule must be transparent before settlement and represented through the canonical Billing domain as an explicit service/adjustment outcome. It must never silently rewrite product prices or create an unexplained total.
+
+Manager waiver/override requires permission, reason and audit. Online/Menuza customer contexts must be able to receive any customer-relevant policy before order confirmation where applicable.
+
 ## Transfers and merges
 
 - Transfer table/room while preserving session identity/history.
