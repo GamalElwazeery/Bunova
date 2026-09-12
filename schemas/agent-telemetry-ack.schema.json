@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://executionkit.local/schemas/agent-telemetry-ack.schema.json",
+  "title":"ExecutionKit Agent Telemetry ACK",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["protocolVersion","batchId","status","acceptedCount","duplicateCount","serverTime","compatibility"],
+  "properties":{
+    "protocolVersion":{"const":"1.0.0"},
+    "batchId":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "status":{"const":"ACK"},
+    "acceptedCount":{"type":"integer","minimum":0},
+    "duplicateCount":{"type":"integer","minimum":0},
+    "serverTime":{"type":"string","format":"date-time"},
+    "compatibility":{
+      "type":"object","additionalProperties":false,
+      "required":["minProtocol","maxProtocol","serverGeneration"],
+      "properties":{
+        "minProtocol":{"type":"string","minLength":1},"maxProtocol":{"type":"string","minLength":1},"serverGeneration":{"type":"string","minLength":1},
+        "recommendedAgentVersion":{"type":["string","null"]},"upgradeRequired":{"type":"boolean"}
+      }
+    }
+  }
+}
