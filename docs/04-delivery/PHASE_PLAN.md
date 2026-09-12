@@ -8,8 +8,8 @@ Freeze product vocabulary, domain ownership, integration boundaries, architectur
 ## K00 — AI-ExecutionKit deep integration gate
 Dedicated next-round integration against the **current live AI-ExecutionKit**, using its supported installer and current system authorities. Preserve Bunova-native planning, merge agent/skill/rule/workflow/contract authority deeply, keep `TODO.md` as the only mutable backlog, register and route every applicable live kit system, and verify the integration independently. Product implementation remains blocked until K00 closes.
 
-## P01 — Engineering foundation
-Laravel/backend and Flutter workspace foundations; environments; organization/branch tenancy; auth; roles; device/register identity; capability configuration; observability; localization; CI baseline.
+## P01 — Engineering and Bunova Cloud foundation
+Laravel/backend and Flutter workspace foundations; environments; organization/branch tenancy; auth; roles; device/register identity; capability configuration; **commercial entitlement vs enabled-capability separation; tenant lifecycle and platform-admin foundations**; observability; localization; CI baseline.
 
 ## P02 — Catalog, pricing and menu truth
 Categories, items, variants, modifier groups, units, taxes, pricing rules, branch overrides, availability, media and Menuza publication contract.
@@ -24,10 +24,10 @@ Visual floor structure, tables/rooms, occupancy/session lifecycle, transfers/mer
 Stations, routing, bar/barista workflow, kitchen/KDS interoperability, shisha-production hooks, preparation timers, ready/serve flow, re-fire/remake/cancel and production analytics.
 
 ## P06 — Inventory, recipes and procurement
-Stock ledger, stores, units/conversions, recipes/BOM, automatic consumption, waste, counts, transfers, suppliers, PO/receiving and COGS.
+Stock ledger, stores, units/conversions, recipes/BOM, automatic consumption, waste, counts, transfers, suppliers, PO/receiving, **operational supplier dues/payments**, and COGS without turning Bunova into general-ledger accounting.
 
 ## P07 — Staff operations
-Operational staff, shifts/attendance hooks, table/station assignment, permissions, tips/commissions, staff consumption, optional workforce-cost/payroll-lite controls (wage basis, advances, deductions, overtime/payout evidence) and operational performance signals. Full HR/payroll compliance ERP remains out of scope.
+Operational staff, shifts/attendance hooks, table/station assignment, permissions, opening/closing operational checklists, tips/commissions, staff consumption, optional workforce-cost/Payroll-Lite controls (wage basis, advances, deductions, overtime/payout evidence) and operational performance signals. Full statutory HR/payroll compliance ERP remains out of scope.
 
 ## P08 — Timed Resource Engine
 Generic resource catalog, sessions, pause/resume/transfer, rate plans, rounding/minimum rules, packages, reservation linkage and unified bill integration.
@@ -45,7 +45,7 @@ Shisha catalog/modifiers/recipes, station workflow, coal/service requests, stock
 Catalog sync/publication, QR context, table online ordering, pickup/delivery entry, availability, pricing, payment/status callbacks, idempotency and recovery/reconciliation.
 
 ## P13 — Customer, loyalty, memberships and commercial packages
-Profiles/consent, points/stamps, rewards, coupons/promotions, prepaid bundles/credits, memberships, gift value, café/gaming combinations and entitlement consumption.
+Profiles/consent, points/stamps, rewards, coupons/promotions, prepaid bundles/credits, memberships, gift value, café/gaming combinations, entitlement consumption and optional controlled customer tab/house-account credit.
 
 ## P14 — Reservations and customer scheduling
 Tables, rooms and timed-resource reservations, deposits, capacity/conflict logic, no-show/cancel rules and arrival/session conversion.
@@ -57,19 +57,19 @@ ETA eReceipt adapter, fiscal queue/retry/reconciliation, cash expenses/petty cas
 Live Café operations, revenue/margin, channel/station/resource utilization, stock/waste, shift leakage, staff/service metrics, customer retention and branch comparison.
 
 ## P17 — Offline-first synchronization and resilience hardening
-Local POS data, event/outbox/inbox, conflict policy, ordering/session/shift continuity, reconnect reconciliation, device-loss handling and chaos/offline tests.
+Local POS data, event/outbox/inbox, conflict policy, ordering/session/shift continuity, reconnect reconciliation, device-loss handling, **offline commercial-entitlement/grace safety**, and chaos/offline tests.
 
 ## P18 — Hardware, peripheral and integration hardening
 Thermal printers, cash drawers, barcode scanners, customer displays, KDS/bar screens, router/device health and payment-provider adapter boundaries.
 
 ## P19 — Premium UX, accessibility, localization and performance
-Arabic/English/RTL, touch/keyboard/device ergonomics, responsive admin, all application states, design-system consistency, performance budgets and visual/interaction audit.
+Arabic/English/RTL, touch/keyboard/device ergonomics, responsive café admin and platform-admin/public-commercial surfaces, all application states, design-system consistency, performance budgets and visual/interaction audit.
 
 ## P20 — Security, audit, full test and operational acceptance
-Threat-model closure, tenant isolation, authorization matrix, financial/fiscal abuse cases, penetration-oriented checks, full regression, data integrity and disaster/recovery evidence.
+Threat-model closure, tenant isolation, authorization matrix, platform support/access boundaries, financial/fiscal abuse cases, penetration-oriented checks, full regression, data integrity and disaster/recovery evidence.
 
-## P21 — Onboarding, migration, documentation and launch
-Setup wizard, templates, data import, training/help, support/diagnostics, production configuration, backup/restore drills, release checklist, rollout/rollback and launch evidence.
+## P21 — Onboarding, SaaS commercialization, migration, documentation and launch
+Café setup wizard, templates, data import, training/help, support/diagnostics, **plan/pricing/trial/subscription flows, Bunova Platform Admin, public commercial website/onboarding, SaaS payment/reconciliation, tenant suspension/reactivation/export/retention**, production configuration, backup/restore drills, release checklist, pilot, rollout/rollback and launch evidence.
 
 ## Phase gate rule
 
