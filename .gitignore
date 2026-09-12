@@ -1,0 +1,16 @@
+.executionkit/*
+!.executionkit/runtime/
+.executionkit/runtime/*
+!.executionkit/runtime/AI-ExecutionKit/
+
+# Local/generated ExecutionKit state
+.executionkit/state/
+.executionkit/installer/
+.executionkit/discovery/
+.executionkit/runtime/checkpoint.json
+
+# Future project-local generated/dependency directories
+node_modules/
+vendor/
+.dart_tool/
+build/
