@@ -40,7 +40,8 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [x] `P00-019` Create implementation readiness checklist and traceability/status/DoD authorities.
 - [x] `P00-020` Perform final planning cross-reference audit after canonical TODO creation. **Depends:** P00-001..019. **Evidence:** `docs/05-governance/NATIVE_PLANNING_AUDIT.md`; repository tree checked, K00 sequencing/readiness mismatch and café-specific explicitness gaps repaired.
 - [x] `P00-021` Run planning completeness audit against `IMPLEMENTATION_READINESS_CHECKLIST.md`. **Depends:** P00-020. **Evidence:** no unresolved critical `TBD`; future implementation domains have canonical phase/task coverage and all identified planning P1 gaps were corrected.
-- [x] `P00-GATE` Close native planning gate. **Depends:** P00-020..021. **Evidence:** `docs/05-governance/NATIVE_PLANNING_AUDIT.md` clean after corrections. **Next:** K00 only; product implementation remains blocked until K00 closes.
+- [x] `P00-022` Extend planning closure to the sellable Bunova Cloud layer and remaining real-café financial operations. **Evidence:** `PLATFORM_SAAS_AND_TENANT_LIFECYCLE.md`, platform entitlement contract/skill/agent, Platform Admin/public surfaces, supplier dues, customer house accounts and operational shift checklists are now stable authorities with canonical phase tasks below.
+- [x] `P00-GATE` Close native planning gate. **Depends:** P00-020..022. **Evidence:** `docs/05-governance/NATIVE_PLANNING_AUDIT.md` clean after corrections. **Next:** K00 only; product implementation remains blocked until K00 closes.
 
 ---
 
@@ -56,12 +57,12 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `K00-006` Map Execution system to Bunova task/status/dependency semantics. **Accept:** `[ ]/[~]/[!]/[x]`, task-by-task selection, phase gates and no-shadow-backlog rules are preserved.
 - [ ] `K00-007` Map Agent system to Bunova native agent roles/skills/contracts. **Accept:** native specialists are retained and routable; no conflicting duplicate agent authority.
 - [ ] `K00-008` Map Content system to Bunova Arabic/English UI/help/receipt/error/empty-state content and no-placeholder rules.
-- [ ] `K00-009` Map SEO/public-discovery capabilities from live kit only where Bunova public website/customer-public surfaces need them; do not pollute operational POS/admin concerns.
+- [ ] `K00-009` Map SEO/public-discovery capabilities from live kit to Bunova public website/commercial acquisition surfaces only where appropriate; do not pollute operational POS/admin concerns.
 - [ ] `K00-010` Map Audit system to `AUDIT_STRATEGY.md`, phase close and anti-generic UX/domain integrity checks.
 - [ ] `K00-011` Map Test system to Bunova risk-driven test strategy and phase/wave heavy-suite cadence.
 - [ ] `K00-012` Map Launch system to Bunova migration/support/observability/backup/pilot/rollback gates.
 - [ ] `K00-013` Map live kit state/continuity system to resumable Bunova sessions without creating alternate backlog/state authority.
-- [ ] `K00-014` Register/rout Bunova native skills, agents, workflows, rules and contracts through kit mechanisms. **Accept:** `registered == integrated` is not assumed; routing/selection is verified.
+- [ ] `K00-014` Register/rout Bunova native skills, agents, workflows, rules and contracts through kit mechanisms, including Platform SaaS authorities. **Accept:** `registered == integrated` is not assumed; routing/selection is verified.
 - [ ] `K00-015` Install/configure kit MCP/tools/scripts supported for Bunova repository and verify safe operation.
 - [ ] `K00-016` Reconcile kit-generated TODO metadata with canonical Bunova `TODO.md` without shortening task detail or creating another TODO.
 - [ ] `K00-017` Run kit validators/readiness/audit commands applicable to a planning-first repo and fix every Bunova-specific conflict.
@@ -71,9 +72,9 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 ---
 
-# P01 — Engineering foundation
+# P01 — Engineering and Bunova Cloud foundation
 
-**Authorities:** `SYSTEM_ARCHITECTURE.md`, `DOMAIN_MAP.md`, capability/offline/security contracts and P01 phase plan.
+**Authorities:** `SYSTEM_ARCHITECTURE.md`, `DOMAIN_MAP.md`, `PLATFORM_SAAS_AND_TENANT_LIFECYCLE.md`, capability/platform-entitlement/offline/security contracts and P01 phase plan.
 
 - [ ] `P01-001` Create repository application/workspace layout for Laravel backend/web, Flutter operational app(s), shared contracts/docs and tooling. **Accept:** boundaries are clear, build instructions work, no unnecessary microservices.
 - [ ] `P01-002` Establish environment/config strategy for local/test/staging/production with secret-safe templates and validation.
@@ -96,8 +97,14 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P01-019` Establish test factories/fixtures with hard separation from production seed/demo data.
 - [ ] `P01-020` Establish CI/self-hosted checks: backend tests/static/lint, Flutter analyze/tests, contract/schema validation, secret/dependency scans and path/reference checks.
 - [ ] `P01-021` Measure baseline boot/API/local-DB/app-start performance and set first realistic budgets.
-- [ ] `P01-AUDIT` Perform independent foundation audit: tenancy/auth/module boundaries/secrets/RTL/offline base/test quality; convert findings into canonical tasks and resolve P0/P1.
-- [ ] `P01-GATE` Close engineering foundation after suite/audit/docs/evidence pass.
+- [ ] `P01-022` Implement Platform Plan/Plan Version and Commercial Entitlement primitives separately from enabled capabilities. **Contract:** `PLATFORM_ENTITLEMENT_AND_SUBSCRIPTION_CONTRACT.md`. **Accept:** entitled ≠ enabled; plan history is versioned and explainable.
+- [ ] `P01-023` Implement tenant trial/subscription lifecycle foundation and organization commercial state without coupling it to café customer Billing/Payments.
+- [ ] `P01-024` Implement deterministic branch/device/capability commercial limit evaluation and explicit remediation behavior; downgrade never deletes existing data.
+- [ ] `P01-025` Implement signed/versioned entitlement projection to registered operational devices with issued/expiry/grace metadata and server refresh/revocation hooks.
+- [ ] `P01-026` Establish separately authorized Bunova Platform Admin shell for tenant/plan/entitlement/service administration; no café-owner role can acquire platform privileges through tenant configuration.
+- [ ] `P01-027` Add foundational tests proving Platform Billing/entitlement records cannot be confused with café Bills/Payments, and proving capability use requires commercial entitlement + enabled capability + user/device authorization.
+- [ ] `P01-AUDIT` Perform independent foundation audit: tenancy/auth/platform-vs-café boundaries/module boundaries/secrets/RTL/offline entitlement base/test quality; convert findings into canonical tasks and resolve P0/P1.
+- [ ] `P01-GATE` Close engineering/Cloud foundation after suite/audit/docs/evidence pass.
 
 ---
 
@@ -231,7 +238,11 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P06-015` Build mobile/operational waste and count workflows with barcode/quick search where useful.
 - [ ] `P06-016` Implement optional availability advisory/block integration without deleting catalog items or making stock projection the only truth.
 - [ ] `P06-017` Test concurrent sale/receipt/count/transfer, negative stock policy, unit rounding, modifier replacement recipe and replay idempotency.
-- [ ] `P06-AUDIT` Inventory ledger/COGS/waste/procurement UX/data-integrity audit.
+- [ ] `P06-018` Implement supplier invoice/operational payable facts from receiving/manual approved invoice references with due date/terms and traceable source.
+- [ ] `P06-019` Implement supplier settlement/payment/credit movements including partial settlement and explicit adjustment/write-off permission/reason/audit; never directly edit supplier balance.
+- [ ] `P06-020` Build supplier statement and due/overdue views reconciling opening balance + invoices/credits - payments to closing operational balance; label this as operational payables, not general-ledger accounting.
+- [ ] `P06-021` Test duplicate supplier payment/reference, partial payment, return/credit, corrected invoice, branch scope and historical statement stability.
+- [ ] `P06-AUDIT` Inventory ledger/COGS/waste/procurement/supplier-dues UX/data-integrity audit.
 - [ ] `P06-GATE` Close inventory/procurement phase.
 
 ---
@@ -255,7 +266,10 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P07-013` Implement approved overtime/extra shifts, advances/loans, bonuses and deductions as auditable workforce-cost movements with reason/permission and correction history.
 - [ ] `P07-014` Implement payout/settlement records and period summary showing earned basis, additions, deductions, advances and paid/outstanding amount; prohibit destructive balance edits.
 - [ ] `P07-015` Build manager/owner Payroll-Lite UX and staff-cost analytics/export with privacy permissions; test attendance linkage, partial period, corrections and branch transfer cases.
-- [ ] `P07-AUDIT` Staff permission/privacy/offline/Payroll-Lite/UX audit.
+- [ ] `P07-016` Implement versioned opening/handover/closing checklist templates scoped by branch/role/station/daypart with completion, note/reading and optional evidence requirements.
+- [ ] `P07-017` Build operational checklist execution/exception/manager-verification UX and alerts; never duplicate canonical cash/stock/session facts as manually editable checklist truth.
+- [ ] `P07-018` Test missed checklist, partial handover, offline completion/replay, template version change and manager override/audit.
+- [ ] `P07-AUDIT` Staff permission/privacy/offline/Payroll-Lite/checklist/UX audit.
 - [ ] `P07-GATE` Close staff operations phase.
 
 ---
@@ -377,7 +391,7 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 ---
 
-# P13 — Customers, loyalty, memberships, bundles and stored value
+# P13 — Customers, loyalty, memberships, promotions, bundles and stored value
 
 **Authorities:** `CUSTOMERS_LOYALTY_MEMBERSHIPS_AND_VALUE.md`, unified billing, privacy and idempotency rules.
 
@@ -399,7 +413,12 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P13-016` Test duplicate earn/redeem, refund, expiry boundary, partial package consumption, concurrent devices and customer merge.
 - [ ] `P13-017` Implement commercial coupon/promotion rule set for café use cases (happy hour, coffee+bakery combo, gaming+drink/meal, BOGO/second-item, student/member promotions) using canonical Billing allocations and deterministic precedence; do not mutate catalog prices invisibly.
 - [ ] `P13-018` Build promotion eligibility/explanation/admin UX and test stacking conflicts, schedule/daypart, channel/branch scope, refunds and entitlement combinations.
-- [ ] `P13-AUDIT` Stored-value/promotion/privacy/financial and POS usability audit.
+- [ ] `P13-019` Implement optional customer/corporate house-account approval, credit limit/terms, allowed branch/channel scope and active/blocked status.
+- [ ] `P13-020` Implement house-account charge and settlement ledger movements linked to finalized bills/payments; support partial settlement, refund/credit and statement reconciliation without mutable balance editing.
+- [ ] `P13-021` Build POS eligibility/limit/overdue explanation and controlled house-account tender; over-limit/manual adjustment/write-off requires configured permission/reason/audit.
+- [ ] `P13-022` Build customer/corporate account statement, aging/due view and settlement UX; validate launch-market accounting/tax/legal treatment before production.
+- [ ] `P13-023` Test concurrent credit use, limit race, refund, partial settlement, block/unblock, merged customer and historical statement stability.
+- [ ] `P13-AUDIT` Stored-value/promotion/house-account/privacy/financial and POS usability audit.
 - [ ] `P13-GATE` Close customer programs phase.
 
 ---
@@ -474,7 +493,7 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 # P17 — Offline-first sync and resilience hardening
 
-**Authorities:** `OFFLINE_SYNC_ARCHITECTURE.md`, `OFFLINE_SYNC_CONTRACT.md`, offline rules.
+**Authorities:** `OFFLINE_SYNC_ARCHITECTURE.md`, `OFFLINE_SYNC_CONTRACT.md`, `PLATFORM_ENTITLEMENT_AND_SUBSCRIPTION_CONTRACT.md`, offline rules.
 
 - [ ] `P17-001` Inventory every operational command and explicitly classify offline-allowed/online-required/conditional.
 - [ ] `P17-002` Finalize local Drift projection schemas and migration/version compatibility for all enabled operational modules.
@@ -492,7 +511,8 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P17-014` Test duplicate replay, app crash between local commit/send/ack, server retry and out-of-order responses.
 - [ ] `P17-015` Load-test backlog replay after long outage and prevent UI starvation/server thundering herd.
 - [ ] `P17-016` Add chaos scenarios for Redis/Reverb/API partial outage proving durable truth does not depend on sockets.
-- [ ] `P17-AUDIT` Independent sync/data-loss/conflict/resilience audit.
+- [ ] `P17-017` Harden offline entitlement/grace behavior: signed projection expiry, bounded grace, plan downgrade/suspension during open shift/session, eventual server reconciliation and clear operator state. **Accept:** no stranded accepted money/fiscal work and no indefinite offline license bypass.
+- [ ] `P17-AUDIT` Independent sync/data-loss/conflict/resilience/entitlement-grace audit.
 - [ ] `P17-GATE` Close offline/resilience phase only with convergence evidence.
 
 ---
@@ -521,7 +541,7 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 # P19 — Premium UX, content, accessibility, localization and performance
 
-**Authorities:** `UX_QUALITY_STANDARD.md`, `DESIGN_SYSTEM_AND_BRAND.md`, `LOCALIZATION_ACCESSIBILITY_AND_INPUT.md`, UX/content rules.
+**Authorities:** `UX_QUALITY_STANDARD.md`, `DESIGN_SYSTEM_AND_BRAND.md`, `LOCALIZATION_ACCESSIBILITY_AND_INPUT.md`, `SURFACE_MAP.md`, UX/content rules.
 
 - [ ] `P19-001` Finalize production brand token values after contrast/venue-lighting testing; keep semantic token names stable.
 - [ ] `P19-002` Complete shared web component inventory and replace unjustified one-off patterns in operational/admin flows.
@@ -533,12 +553,12 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P19-008` Complete English copy review; eliminate placeholder/lorem/generic AI text and inconsistent terminology.
 - [ ] `P19-009` Run full RTL visual/interaction audit across web, Flutter, printing/customer display and mixed bidi codes/numbers.
 - [ ] `P19-010` Run accessibility audit: contrast, focus order, semantics/labels, keyboard, reduced motion, text scaling and non-color/non-sound alternatives.
-- [ ] `P19-011` Run responsive audit for owner/admin surfaces from phone through desktop; provide usable alternative to wide tables/canvas controls.
+- [ ] `P19-011` Run responsive audit for café owner/admin and Bunova Platform Admin/public website surfaces from phone through desktop; provide usable alternative to wide tables/canvas controls.
 - [ ] `P19-012` Add targeted visual regression snapshots for critical shells/states in Arabic/English/light/dark/responsive contexts.
 - [ ] `P19-013` Measure and optimize POS product search/cart/tender responsiveness and Flutter app start/local DB migration.
 - [ ] `P19-014` Measure and optimize admin/control-center query/load performance with realistic branch data volumes.
 - [ ] `P19-015` Audit animations/feedback for functional value and reduced-motion behavior; remove distracting/slow motion.
-- [ ] `P19-016` Conduct anti-generic UX review across all major surfaces; convert every poor/basic/CRUD-like operational flow into canonical remediation tasks and close P0/P1.
+- [ ] `P19-016` Conduct anti-generic UX review across all major operational, café-admin, platform-admin and public-commercial surfaces; convert every poor/basic/CRUD-like flow into canonical remediation tasks and close P0/P1.
 - [ ] `P19-AUDIT` Independent premium UX/content/accessibility/performance audit.
 - [ ] `P19-GATE` Close product-experience hardening phase.
 
@@ -546,18 +566,18 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 # P20 — Security, audit, full verification and operational acceptance
 
-**Authorities:** `SECURITY_PRIVACY_AND_ABUSE.md`, `TEST_STRATEGY.md`, `AUDIT_STRATEGY.md`, all contracts/rules.
+**Authorities:** `SECURITY_PRIVACY_AND_ABUSE.md`, `TEST_STRATEGY.md`, `AUDIT_STRATEGY.md`, platform entitlement contract, all other contracts/rules.
 
 - [ ] `P20-001` Refresh threat model against implemented architecture and enumerate attack/abuse paths by surface/integration.
 - [ ] `P20-002` Run tenant/organization/branch isolation test matrix across every domain/API/read model/export.
 - [ ] `P20-003` Run granular authorization negative matrix for sensitive actions and verify UI hiding is not relied upon.
 - [ ] `P20-004` Review staff/device authentication, session expiry, quick unlock/biometric/PIN design and stolen/revoked-device behavior.
-- [ ] `P20-005` Run webhook/provider authentication/replay/idempotency security tests for payment/Menuza/fiscal/router/notifications.
+- [ ] `P20-005` Run webhook/provider authentication/replay/idempotency security tests for payment/Menuza/fiscal/router/notifications/platform subscription provider.
 - [ ] `P20-006` Run secret scan, dependency vulnerability scan, static analysis and configuration hardening review.
-- [ ] `P20-007` Review logs/audit/support bundles for secrets/PII/payment/router/fiscal credential leakage.
+- [ ] `P20-007` Review logs/audit/support bundles for secrets/PII/payment/router/fiscal/platform credential leakage.
 - [ ] `P20-008` Test CSRF/XSS/injection/mass-assignment/file upload/export/download authorization and API rate/abuse protections.
-- [ ] `P20-009` Run financial abuse scenarios: refund/void/discount/complimentary/drawer/shift variance/duration/rate/stock manipulation.
-- [ ] `P20-010` Verify immutable/compensating history invariants for bill/payment/cash/stock/time/loyalty/gift/fiscal.
+- [ ] `P20-009` Run financial abuse scenarios: refund/void/discount/complimentary/drawer/shift variance/duration/rate/stock/house-account/supplier/workforce-cost manipulation.
+- [ ] `P20-010` Verify immutable/compensating history invariants for bill/payment/cash/stock/time/loyalty/gift/house-account/supplier/workforce/fiscal/platform-subscription records as applicable.
 - [ ] `P20-011` Run full backend/Flutter/contract/UI/visual suites on production-like configuration.
 - [ ] `P20-012` Run offline/chaos/resilience suite from P17 and integration outage fixtures from P12/P15/P18.
 - [ ] `P20-013` Run realistic load/performance test for branch rush, multi-branch owner read models, queue workers, sync replay and production realtime.
@@ -566,14 +586,15 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P20-016` Perform full independent product audit against every domain/phase authority, excluding intentionally future/non-goal scope.
 - [ ] `P20-017` Resolve all P0/P1 findings through canonical tasks; document accepted P2 only with owner/rationale where allowed.
 - [ ] `P20-018` Freeze release-candidate API/event/local-sync schema compatibility and migration expectations.
-- [ ] `P20-AUDIT` Final security/data/financial/UX/operational acceptance review signs off evidence.
+- [ ] `P20-019` Verify platform-operator authorization/support-access boundaries, tenant lifecycle controls, entitlement override audit and separation between Platform Billing and Café Billing.
+- [ ] `P20-AUDIT` Final security/data/financial/UX/platform/operational acceptance review signs off evidence.
 - [ ] `P20-GATE` Close full verification gate; launch preparation may start only after zero blocker findings.
 
 ---
 
-# P21 — Onboarding, migration, support and production launch
+# P21 — Onboarding, SaaS commercialization, migration, support and production launch
 
-**Authorities:** `ONBOARDING_AND_SETUP.md`, `MIGRATION_SUPPORT_AND_LAUNCH.md`, `OBSERVABILITY_AND_OPERATIONS.md`, release workflow.
+**Authorities:** `ONBOARDING_AND_SETUP.md`, `MIGRATION_SUPPORT_AND_LAUNCH.md`, `OBSERVABILITY_AND_OPERATIONS.md`, `PLATFORM_SAAS_AND_TENANT_LIFECYCLE.md`, release workflow.
 
 - [ ] `P21-001` Implement production onboarding wizard: organization/locale/branch/preset/capabilities/catalog/tax/venue/stations/device/staff/payments/integrations/readiness.
 - [ ] `P21-002` Implement setup-readiness validator based on enabled capabilities and actual configuration, not clicked-step percentage.
@@ -598,7 +619,17 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 - [ ] `P21-021` Execute progressive production rollout with active monitoring and reconciliation checks; record release evidence.
 - [ ] `P21-022` Complete post-launch first-business-day reconciliation: money, shifts, stock movements, timed sessions, Wi-Fi, production, Menuza and fiscal queues.
 - [ ] `P21-023` Complete post-launch stabilization review and ensure every discovered issue is represented only in this canonical TODO until resolved.
-- [ ] `P21-GATE` Production acceptance: Bunova is launch-complete only after pilot/rollout/reconciliation/support/restore/security evidence passes and no P0/P1 remains.
+- [ ] `P21-024` Finalize commercial Plan Versions and Arabic/English plan matrix: branch/device allowances, premium capabilities, integrations/support tier and pricing rules; plan changes never rewrite prior subscription periods.
+- [ ] `P21-025` Implement trial, subscription period, renewal, upgrade/downgrade, cancellation, past-due/grace, suspension and reactivation flows with explicit lifecycle history.
+- [ ] `P21-026` Implement provider-neutral Bunova SaaS payment/subscription adapter plus auditable manual payment option where launch go-to-market requires it; handle duplicate/out-of-order/unknown provider states by reconciliation.
+- [ ] `P21-027` Build Bunova Platform Admin production surface for tenants, plan/subscription/entitlement usage, commercial exceptions, service health, support cases, lifecycle operations and platform audit.
+- [ ] `P21-028` Implement controlled platform support-access grants/diagnostics with actor, reason/case reference, scope/expiry and audit; avoid routine direct DB editing.
+- [ ] `P21-029` Implement tenant downgrade/suspension/reactivation/export/closure/retention workflows that preserve operational/fiscal history and safely settle/sync accepted work.
+- [ ] `P21-030` Build Bunova public Arabic/English commercial website and acquisition/onboarding surface: product/archetypes/capabilities, current pricing/plan comparison, lead/contact or signup/trial path, legal/privacy/help entry points, responsive premium UX, analytics and post-K00 SEO/Content authority compliance.
+- [ ] `P21-031` Test entitlement limit races, trial expiry, offline grace, downgrade with over-limit resources, past-due recovery, subscription payment ambiguity and cross-tenant Platform Admin authorization.
+- [ ] `P21-032` Reconcile Bunova-company SaaS subscription charges independently from every pilot café's own sales; prove no report/ledger mixes Platform Billing with Café Billing.
+- [ ] `P21-033` Update commercial/support documentation, plan-change communication, subscription exception runbooks and tenant offboarding instructions.
+- [ ] `P21-GATE` Production acceptance: Bunova is launch-complete only after café pilot/rollout/reconciliation, SaaS commercial/platform operations, support/restore/security evidence pass and no P0/P1 remains.
 
 ---
 
