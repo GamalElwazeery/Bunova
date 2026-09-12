@@ -38,7 +38,7 @@ Menuza remains the customer-facing demand layer for digital menu, QR-context ord
 
 This repository remains **planning-first**. The native Bunova planning corpus and `P00-GATE` are complete. Product implementation is still intentionally blocked.
 
-The repository-side `K00` AI-ExecutionKit integration is now installed against exact source pin `fb49bfa3a16995b4ea785ed6ca66d0da808032c8` (VERSION 3.0.0) at `.executionkit/runtime/kit`. Bunova-native authorities are preserved and routed through Agent OS; the Antigravity workspace plugin, hooks, MCP configuration and native role/skill adapters are present; Execution/Agent/Content/SEO/Audit/Test/Launch plus cross-cutting State OS and Premium Experience are reconciled at repository/configuration level.
+The repository-side `K00` AI-ExecutionKit integration is installed against exact source pin `5a9eda4ab2159f93cca9867b492fe9ceb65ce261` (VERSION 3.0.0) at `.executionkit/runtime/kit`. Bunova-native authorities are preserved and routed through Agent OS; the Antigravity workspace plugin, hooks, MCP configuration and native role/skill adapters are present; Execution/Agent/Content/SEO/Audit/Test/Launch plus cross-cutting State OS and Premium Experience are reconciled at repository/configuration level.
 
 `K00` is **not yet activated**. A real initialized Antigravity/runtime-capable checkout must still materialize the private submodule, regenerate the native task projection, run the applicable validators/routing checks, prove State checkpoint → rehydrate → Amnesia, and prove Antigravity plugin/hook/MCP behavior. Only after independent `K00-019` acceptance and `K00-GATE` activation may `P01` product implementation begin. Static repository presence is never treated as host/runtime PASS.
 
