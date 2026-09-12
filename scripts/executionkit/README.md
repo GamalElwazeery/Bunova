@@ -31,9 +31,10 @@ node .executionkit/runtime/kit/bin/validate-deep-integration.mjs . --json
 node .executionkit/runtime/kit/bin/validate-quality.mjs .
 node .executionkit/runtime/kit/bin/validate-seo.mjs .
 node .executionkit/runtime/kit/bin/validate-ci-policy.mjs .
-node .executionkit/runtime/kit/bin/validate-operator-entry.mjs .
 node .executionkit/runtime/kit/bin/validate-v30-project.mjs .
 ```
+
+`validate-operator-entry.mjs` is a distribution-level validator for the ExecutionKit repository itself; do not run it with Bunova as its root. Bunova's project-side operator policy is validated by `validate-v30-project.mjs`, `validate-execution.mjs` and Doctor.
 
 Record actual output and exit codes as evidence. Static repository inspection is not a substitute for these executable checks, and inability to execute them is `NOT_RUN`, not PASS.
 
@@ -64,7 +65,7 @@ A file created manually is not equivalent to this proof.
 
 ## 6. Host / MCP integration
 
-Run the current Antigravity integration only on the actual host where Bunova will execute, then prove MCP handshake and representative read-only/tool calls. Do not commit secrets or host-specific credentials. Memory MCP, if available, remains advisory and must not store canonical task state.
+The repository must first contain the current ExecutionKit Antigravity adapter surfaces generated from the pinned runtime. On the actual host where Bunova will execute, prove the hook and MCP handshake with representative read-only/tool calls. Do not commit secrets or host-specific credentials. Memory MCP, if available, remains advisory and must not store canonical task state.
 
 Project-local MCP entrypoint:
 
