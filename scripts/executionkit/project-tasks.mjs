@@ -87,7 +87,7 @@ function inferTags(id, title, phase) {
   return [...tags];
 }
 function parseEvidence(text, state, phase) {
-  const m = text.match(/\*\*Evidence:\*\s*([^]*?)(?=\s+\*\*|$)/i);
+  const m = text.match(/\*\*Evidence:\*\*\s*([^]*?)(?=\s+\*\*|$)/i);
   if (m?.[1]?.trim()) return m[1].trim();
   if (state === 'ACCEPTED' && phase === 'P00') return 'Pre-adoption accepted planning evidence preserved in Bunova git history and linked native planning authorities.';
   return 'PENDING';
