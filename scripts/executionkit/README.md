@@ -17,9 +17,9 @@ git -C .executionkit/runtime/kit rev-parse HEAD
 cat .executionkit/runtime/kit/VERSION
 ```
 
-Expected runtime identity for this K00 baseline: `fb49bfa3a16995b4ea785ed6ca66d0da808032c8`, published VERSION `3.0.0`.
+Expected runtime identity for this K00 baseline: `5a9eda4ab2159f93cca9867b492fe9ceb65ce261`, published VERSION `3.0.0`. This pin includes the current isolated-runtime/State protection repair and its upstream source suite reports 346 tests with zero failures; neither fact substitutes for Bunova host evidence.
 
-The agent must compare the materialized identity with both the Bunova gitlink and current live upstream truth before accepting it. Do not silently advance the pin during validation.
+The agent must compare the materialized identity with both the Bunova gitlink and current live upstream truth before accepting it. Do not silently advance the pin during validation; if upstream `main` moved, inspect the newer changes first and update Bunova coherently only when applicable.
 
 ## 2. Generate canonical derived task projection
 
