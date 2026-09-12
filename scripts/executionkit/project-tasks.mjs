@@ -109,37 +109,57 @@ for (const rel of sources) {
     if (!m) return;
     const [, marker, id, rest] = m;
     const title = rest.split(/\s+\*\*/)[0].trim();
+    const state = markerState[marker] ?? 'PLANNED';
     tasks.push({
-      id, title, state: markerState[marker] ?? 'PLANNED', phase: phase || id.split('-')[0], priority: phase === 'K00' ? 'P0' : 'P1',
-      dependencies: [], action: '', auditBoundary: '', contract: phase === 'K00' ? 'docs/executionkit/INTEGRATION_PLAN.md' : 'TODO.md',
-      verification: rest, evidence: parseEvidence(rest, markerState[marker], phase), blocker: markerState[marker] === 'BLOCKED' ? 'See canonical TODO task text and linked evidence.' : '',
+      id, title, state, phase: phase || id.split('-')[0], priority: phase === 'K00' ? 'P0' : 'P1',
+      dependencies: [], contract: phase === 'K00' ? 'docs/executionkit/INTEGRATION_PLAN.md' : 'TODO.md',
+      verification: rest, evidence: parseEvidence(rest, state, phase),
+      blocker: state === 'BLOCKED' ? 'See canonical TODO task text and linked evidence.' : '',
       blockerActionable: false, unblockAction: '', reason: '', tags: inferTags(id, title, phase), risk: '', objective: title,
       sourcePath: rel, startLine: index + 1, order: order++, isArchive: rel !== 'TODO.md'
     });
   });
 }
+
+const seen = new Set();
+for (const task of tasks) {
+  if (seen.has(task.id)) throw new Error(`Duplicate canonical task id in projection sources: ${task.id}`);
+  seen.add(task.id);
+}
+
 const byId = new Map(tasks.map(t => [t.id, t]));
 for (const task of tasks) {
   if (task.isArchive) continue;
   if (task.phase === 'K00') {
     task.dependencies = (k00Dependencies[task.id] ?? []).filter(id => byId.has(id));
-    if (task.id === 'K00-019') { task.action = 'audit'; task.auditBoundary = 'phase'; }
+    if (task.id === 'K00-019') {
+      task.action = 'audit';
+      task.auditBoundary = 'phase';
+    }
     continue;
   }
   if (task.phase === 'P00') continue;
-  const prev = previousGate(task.phase);
-  const samePhase = tasks.filter(t => !t.isArchive && t.phase === task.phase);
+
+  const prevGate = previousGate(task.phase);
+  const samePhase = tasks.filter(t => !t.isArchive && t.phase === task.phase).sort((a, b) => a.order - b.order);
+  const normalTasks = samePhase.filter(t => !t.id.endsWith('-AUDIT') && !t.id.endsWith('-GATE'));
+  const normalIndex = normalTasks.findIndex(t => t.id === task.id);
+
   if (task.id.endsWith('-AUDIT')) {
-    task.action = 'audit'; task.auditBoundary = 'phase';
-    task.dependencies = samePhase.filter(t => t.id !== task.id && !t.id.endsWith('-GATE')).map(t => t.id);
+    task.action = 'audit';
+    task.auditBoundary = 'phase';
+    task.dependencies = normalTasks.map(t => t.id);
   } else if (task.id.endsWith('-GATE')) {
     const audit = samePhase.find(t => t.id.endsWith('-AUDIT'));
-    task.dependencies = audit ? [audit.id] : samePhase.filter(t => t.id !== task.id).map(t => t.id);
-  } else if (prev && byId.has(prev)) {
-    task.dependencies = [prev];
+    task.dependencies = audit ? [audit.id] : normalTasks.map(t => t.id);
+  } else if (normalIndex === 0) {
+    task.dependencies = prevGate && byId.has(prevGate) ? [prevGate] : [];
+  } else if (normalIndex > 0) {
+    task.dependencies = [normalTasks[normalIndex - 1].id];
   }
 }
 
 fs.mkdirSync(path.dirname(output), { recursive: true });
-fs.writeFileSync(output, JSON.stringify({ schemaVersion: '2.0.0', generatedAt: new Date().toISOString(), sources: sourceEntries, tasks }, null, 2) + '\n');
+const projection = { schemaVersion: '2.0.0', sources: sourceEntries, tasks };
+fs.writeFileSync(output, JSON.stringify(projection, null, 2) + '\n');
 console.log(`Bunova task projection: ${tasks.length} tasks from ${sourceEntries.map(s => s.path).join(', ')}`);
