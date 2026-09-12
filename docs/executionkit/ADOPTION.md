@@ -7,8 +7,9 @@
 - Pre-integration project HEAD: `ac61bdd65ef476d8961ab3534b84d46eed0a7369`
 - ExecutionKit source: `Elwazeery/AI-ExcutionKit`
 - Source branch: `main`
-- Source HEAD inspected/pinned: `fb49bfa3a16995b4ea785ed6ca66d0da808032c8`
+- Source HEAD inspected/pinned: `5a9eda4ab2159f93cca9867b492fe9ceb65ce261`
 - Published VERSION: `3.0.0`
+- Source validation: current source commit reports complete `npm run check` with 346 tests / zero failures on Linux / Node v24.19.0; this does not substitute for Bunova host acceptance.
 - Maturity: `M0_PLANNING_ONLY`
 - Topology: exact pinned isolated runtime at the canonical installed path `.executionkit/runtime/kit`
 - Product execution: blocked until the K00 audit/activation boundary is accepted.
@@ -41,7 +42,7 @@ SEO scope is only Bunova-owned public commercial/acquisition pages. Authenticate
 
 Repository files alone do not prove submodule initialization, Node validator execution, Antigravity integration, MCP handshake/tool calls, Memory MCP availability, macOS/Windows self-hosted runner registration, future Laravel Boost/Dart MCP applicability or physical printer/router/payment/device behavior. Until direct current evidence exists these remain NOT_RUN/NOT_CONFIGURED/NOT_APPLICABLE as appropriate, never PASS.
 
-The repository-level static reconciliation has verified the canonical runtime path and required v3 project-surface schemas/docs against the pinned source, but executable project validators remain direct runtime evidence and cannot be inferred from static presence. Missing optional fleet/control-plane connectivity is degraded observability, not canonical execution failure.
+The repository-level static reconciliation has verified the canonical runtime path and required v3 project-surface schemas/docs against the pinned source. The current upstream pin also contains the later runtime/State isolation repair discovered during real-project adoption, but executable Bunova project validators remain direct runtime evidence and cannot be inferred from source-suite success or static presence. Missing optional fleet/control-plane connectivity is degraded observability, not canonical execution failure.
 
 ## Activation conditions
 
