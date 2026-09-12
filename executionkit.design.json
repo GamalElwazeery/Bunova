@@ -1,0 +1,1 @@
+{"schemaVersion":"1.0.0","scanRoots":["docs/03-experience"],"tokenFiles":["docs/03-experience/DESIGN_SYSTEM_AND_BRAND.md"],"allowHardcoded":["Documentation examples before P01 code exists; production UI hardcoded design values are not authorized when canonical tokens cover them."]}
