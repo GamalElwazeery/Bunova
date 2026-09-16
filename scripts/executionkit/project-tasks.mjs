@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-const root = path.resolve(process.argv[2] ?? '.');
+const rootArg = process.argv.slice(2).find(arg => !arg.startsWith('-'));
+const root = path.resolve(rootArg ?? '.');
 const sources = ['TODO.md', 'TODO_ARCHIVE.md'];
 const output = path.join(root, '.executionkit', 'task-projection.json');
 const markerState = {
