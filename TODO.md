@@ -76,7 +76,7 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 **Authorities:** `SYSTEM_ARCHITECTURE.md`, `DOMAIN_MAP.md`, `PLATFORM_SAAS_AND_TENANT_LIFECYCLE.md`, capability/platform-entitlement/offline/security contracts and P01 phase plan.
 
-- [ ] `P01-001` Create repository application/workspace layout for Laravel backend/web, Flutter operational app(s), shared contracts/docs and tooling. **Accept:** boundaries are clear, build instructions work, no unnecessary microservices.
+- [x] `P01-001` Create repository application/workspace layout for Laravel backend/web, Flutter operational app(s), shared contracts/docs and tooling. **Accept:** boundaries are clear, build instructions work, no unnecessary microservices. **Evidence:** Workspace layout established: Laravel 11 modular monolith in `backend/` with 21 bounded contexts in `app/Domain/`; Flutter 3.24 operational POS app in `apps/pos/`; shared contracts package in `packages/contracts/`; tooling in `tooling/`; build instructions verified in `docs/04-delivery/WORKSPACE_BUILD_INSTRUCTIONS.md`; `php artisan test` (4 passed, 28 assertions), `flutter test`, and `flutter analyze` (0 issues) verified on host.
 - [ ] `P01-002` Establish environment/config strategy for local/test/staging/production with secret-safe templates and validation.
 - [ ] `P01-003` Bootstrap PostgreSQL/Redis/Reverb/object-storage local dependencies and health checks; document reproducible startup.
 - [ ] `P01-004` Implement organization/brand/branch tenancy primitives with explicit organization/branch keys and global IDs.
