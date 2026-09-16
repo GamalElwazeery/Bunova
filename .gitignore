@@ -1,4 +1,5 @@
 .executionkit/*
+!.executionkit/.gitignore
 !.executionkit/runtime/
 .executionkit/runtime/*
 !.executionkit/runtime/kit/

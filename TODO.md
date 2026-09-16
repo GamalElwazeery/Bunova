@@ -49,7 +49,7 @@ Read `AGENTS.md`, inspect live repository state, select the earliest dependency-
 
 **Boundary:** Do not execute these tasks in the native-planning round. Live `Elwazeery/AI-ExcutionKit` repository truth and its current installer/version always win over assumptions below.
 
-- [ ] `K00-001` Inspect live AI-ExecutionKit `main`: HEAD, release/version, README/playbook, installer, system authorities, AGENTS/TODO contracts, MCP/tools/scripts and integration guidance. **Accept:** Bunova integration plan is based on current live kit, not remembered version.
+- [x] `K00-001` Inspect live AI-ExecutionKit `main`: HEAD, release/version, README/playbook, installer, system authorities, AGENTS/TODO contracts, MCP/tools/scripts and integration guidance. **Accept:** Bunova integration plan is based on current live kit, not remembered version. **Evidence:** Live kit pinned at commit `5a9eda4ab2159f93cca9867b492fe9ceb65ce261`, VERSION `3.0.0`; all 346 runtime tests pass on host; integration authorities in `docs/executionkit/ADOPTION.md` and `docs/executionkit/INTEGRATION_PLAN.md` reconciled.
 - [ ] `K00-002` Inspect Bunova `main` immediately before install and protect all native planning authorities from overwrite/regression. **Accept:** baseline HEAD/files recorded and any newer Bunova work preserved.
 - [ ] `K00-003` Run/use the kit's supported installer path for a planning-only repository. **Accept:** installer output is reviewable, deterministic and no product code is invented.
 - [ ] `K00-004` Normalize kit `AGENTS.md`/agent instructions with Bunova `AGENTS.md`. **Accept:** Bunova read order, live-repo rule, `TODO.md` single authority and domain-specific constraints remain explicit.

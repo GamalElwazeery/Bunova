@@ -1,0 +1,8 @@
+# AI ExecutionKit derived/runtime state. Keep the directory local and non-authoritative.
+*
+!.gitignore
+!runtime/
+runtime/*
+!runtime/kit/
+!runtime/kit/**
+!installation.json

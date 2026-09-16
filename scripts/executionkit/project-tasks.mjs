@@ -109,9 +109,9 @@ for (const rel of sources) {
     if (!m) return;
     const [, marker, id, rest] = m;
     const title = rest.split(/\s+\*\*/)[0].trim();
-    const state = markerState[marker] ?? 'READY';
+    const state = markerState[marker] ?? 'PLANNED';
     tasks.push({
-      id, title, state, phase: phase || id.split('-')[0], priority: phase === 'K00' ? 'P0' : 'P1',
+      id, title, state, rawMarker: marker, phase: phase || id.split('-')[0], priority: phase === 'K00' ? 'P0' : 'P1',
       dependencies: [], contract: phase === 'K00' ? 'docs/executionkit/INTEGRATION_PLAN.md' : 'TODO.md',
       verification: rest, evidence: parseEvidence(rest, state, phase),
       blocker: state === 'BLOCKED' ? 'See canonical TODO task text and linked evidence.' : '',
@@ -157,6 +157,18 @@ for (const task of tasks) {
   } else if (normalIndex > 0) {
     task.dependencies = [normalTasks[normalIndex - 1].id];
   }
+}
+
+for (const task of tasks) {
+  if (task.isArchive) continue;
+  if (task.rawMarker === ' ') {
+    const satisfied = (task.dependencies ?? []).every(depId => {
+      const dep = byId.get(depId);
+      return dep && ['ACCEPTED', 'RELEASED'].includes(dep.state);
+    });
+    task.state = satisfied ? 'READY' : 'PLANNED';
+  }
+  delete task.rawMarker;
 }
 
 fs.mkdirSync(path.dirname(output), { recursive: true });
