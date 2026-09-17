@@ -1,11 +1,24 @@
 <?php
 
+use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\HealthCheckController;
 use App\Http\Controllers\Api\StaffAuthController;
+use App\Http\Middleware\AuthenticateDevice;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/health', HealthCheckController::class)->name('api.health');
 Route::prefix('v1')->group(function () {
     Route::get('/health', HealthCheckController::class)->name('api.v1.health');
     Route::post('/pos/staff/authenticate', [StaffAuthController::class, 'authenticate'])->name('api.v1.pos.staff.authenticate');
+
+    // Device registration, revocation & management
+    Route::post('/devices/enroll', [DeviceController::class, 'enroll'])->name('api.v1.devices.enroll');
+    Route::post('/devices/{id}/revoke', [DeviceController::class, 'revoke'])->name('api.v1.devices.revoke');
+    Route::post('/devices/{id}/rotate-credentials', [DeviceController::class, 'rotateCredentials'])->name('api.v1.devices.rotate_credentials');
+
+    // Authenticated device endpoints
+    Route::middleware(AuthenticateDevice::class)->group(function () {
+        Route::get('/devices/me', [DeviceController::class, 'me'])->name('api.v1.devices.me');
+        Route::post('/devices/heartbeat', [DeviceController::class, 'heartbeat'])->name('api.v1.devices.heartbeat');
+    });
 });
