@@ -391,5 +391,14 @@ class CapabilityRegistry
             dependencies: ['billing', 'payments'],
             requiredConfigKeys: ['tax_id', 'pos_serial']
         ));
+
+        // Analytics
+        $this->register(new CapabilityDefinition(
+            key: 'analytics.advanced',
+            family: 'analytics',
+            name: 'Advanced Analytics & Forecasting',
+            description: 'Advanced business intelligence, consolidated multi-branch reporting, forecasting',
+            dependencies: ['reporting']
+        ));
     }
 }

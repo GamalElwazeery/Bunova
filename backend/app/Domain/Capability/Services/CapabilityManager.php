@@ -53,8 +53,14 @@ class CapabilityManager
             $this->registry->validateCanEnable($key, $activeKeys);
         }
 
-        // Determine status based on required configuration
-        $mergedConfig = array_merge($def->defaultConfig, $config);
+        $existing = CapabilityConfiguration::where('organization_id', $org->id)
+            ->where('branch_id', $branchId)
+            ->where('capability_key', $key)
+            ->first();
+
+        // Determine status based on required configuration (preserving existing config)
+        $existingConfig = $existing ? ($existing->config ?? []) : [];
+        $mergedConfig = array_merge($def->defaultConfig, $existingConfig, $config);
         $missingKeys = $def->getMissingConfigKeys($mergedConfig);
 
         $status = empty($missingKeys)
