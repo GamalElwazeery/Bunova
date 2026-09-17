@@ -65,6 +65,16 @@ return [
             'replace_placeholders' => true,
         ],
 
+        'structured_json' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'formatter' => \App\Support\Logging\StructuredJsonFormatter::class,
+            'with' => [
+                'stream' => storage_path('logs/structured.log'),
+            ],
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

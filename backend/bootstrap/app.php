@@ -27,6 +27,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        $exceptions->report(function (\Throwable $e) {
+            app(\App\Support\Observability\ErrorTracker::class)->captureException($e);
+        });
+
         $exceptions->render(function (\Throwable $e, Request $request) {
             if ($request->is('api/*') || $request->expectsJson()) {
                 return ApiErrorResponse::fromException($e, $request);

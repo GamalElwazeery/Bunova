@@ -7,9 +7,18 @@ use App\Http\Controllers\Api\StaffAuthController;
 use App\Http\Middleware\AuthenticateDevice;
 use Illuminate\Support\Facades\Route;
 
+// Top-level health endpoints
 Route::get('/health', HealthCheckController::class)->name('api.health');
+Route::get('/health/liveness', [HealthCheckController::class, 'liveness'])->name('api.health.liveness');
+Route::get('/health/readiness', [HealthCheckController::class, 'readiness'])->name('api.health.readiness');
+
+// Versioned API v1 routes
 Route::prefix('v1')->group(function () {
+    // Health & Observability probes
     Route::get('/health', HealthCheckController::class)->name('api.v1.health');
+    Route::get('/health/liveness', [HealthCheckController::class, 'liveness'])->name('api.v1.health.liveness');
+    Route::get('/health/readiness', [HealthCheckController::class, 'readiness'])->name('api.v1.health.readiness');
+
     Route::post('/pos/staff/authenticate', [StaffAuthController::class, 'authenticate'])->name('api.v1.pos.staff.authenticate');
 
     // Device registration, revocation & management
