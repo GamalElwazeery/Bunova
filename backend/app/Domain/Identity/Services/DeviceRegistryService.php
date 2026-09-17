@@ -4,12 +4,20 @@ namespace App\Domain\Identity\Services;
 
 use App\Domain\Identity\Models\Branch;
 use App\Domain\Identity\Models\RegisteredDevice;
+use App\Domain\Shared\Models\AuditEvent;
+use App\Domain\Shared\Services\AuditService;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class DeviceRegistryService
 {
     public const TOKEN_PREFIX = 'bnd_';
+
+    public function __construct(
+        protected ?AuditService $auditService = null
+    ) {
+        $this->auditService = $this->auditService ?? app(AuditService::class);
+    }
 
     /**
      * Enroll a new physical operational device.
@@ -73,6 +81,23 @@ class DeviceRegistryService
             'last_seen_at' => now(),
         ]);
 
+        // Record audit event for device enrollment
+        $this->auditService->recordSensitiveAction(
+            organizationId: $device->organization_id,
+            actionKey: AuditEvent::ACTION_DEVICE_REGISTERED,
+            targetType: 'RegisteredDevice',
+            targetId: $device->id,
+            reason: 'Device enrollment',
+            before: [],
+            after: [
+                'device_code' => $device->device_code,
+                'device_type' => $device->device_type,
+                'status' => $device->status,
+            ],
+            branchId: $device->branch_id,
+            deviceId: $device->id
+        );
+
         return [
             'device' => $device,
             'token' => $token,
@@ -113,12 +138,26 @@ class DeviceRegistryService
      */
     public function revoke(RegisteredDevice $device, string $reason): void
     {
+        $before = ['status' => $device->status, 'token_hash' => $device->token_hash];
+
         $device->update([
             'status' => RegisteredDevice::STATUS_REVOKED,
             'token_hash' => null, // Scramble/clear token to ensure credentials cannot be reused
             'revoked_at' => now(),
             'revocation_reason' => $reason,
         ]);
+
+        $this->auditService->recordSensitiveAction(
+            organizationId: $device->organization_id,
+            actionKey: AuditEvent::ACTION_DEVICE_REVOKED,
+            targetType: 'RegisteredDevice',
+            targetId: $device->id,
+            reason: $reason,
+            before: $before,
+            after: ['status' => RegisteredDevice::STATUS_REVOKED, 'token_hash' => null],
+            branchId: $device->branch_id,
+            deviceId: $device->id
+        );
     }
 
     /**
@@ -126,10 +165,24 @@ class DeviceRegistryService
      */
     public function suspend(RegisteredDevice $device, string $reason): void
     {
+        $before = ['status' => $device->status];
+
         $device->update([
             'status' => RegisteredDevice::STATUS_SUSPENDED,
             'revocation_reason' => $reason,
         ]);
+
+        $this->auditService->recordSensitiveAction(
+            organizationId: $device->organization_id,
+            actionKey: AuditEvent::ACTION_AUTH_SECURITY,
+            targetType: 'RegisteredDevice',
+            targetId: $device->id,
+            reason: $reason,
+            before: $before,
+            after: ['status' => RegisteredDevice::STATUS_SUSPENDED],
+            branchId: $device->branch_id,
+            deviceId: $device->id
+        );
     }
 
     /**
@@ -141,10 +194,24 @@ class DeviceRegistryService
             throw new InvalidArgumentException("Revoked devices cannot be reactivated; re-enrollment is required.");
         }
 
+        $before = ['status' => $device->status];
+
         $device->update([
             'status' => RegisteredDevice::STATUS_ACTIVE,
             'revocation_reason' => null,
         ]);
+
+        $this->auditService->recordSensitiveAction(
+            organizationId: $device->organization_id,
+            actionKey: AuditEvent::ACTION_AUTH_SECURITY,
+            targetType: 'RegisteredDevice',
+            targetId: $device->id,
+            reason: 'Device reactivated from suspension',
+            before: $before,
+            after: ['status' => RegisteredDevice::STATUS_ACTIVE],
+            branchId: $device->branch_id,
+            deviceId: $device->id
+        );
     }
 
     /**
@@ -165,6 +232,18 @@ class DeviceRegistryService
             'api_key_prefix' => $prefix,
             'token_hash' => $tokenHash,
         ]);
+
+        $this->auditService->recordSensitiveAction(
+            organizationId: $device->organization_id,
+            actionKey: AuditEvent::ACTION_AUTH_SECURITY,
+            targetType: 'RegisteredDevice',
+            targetId: $device->id,
+            reason: 'Device credential rotation',
+            before: ['api_key_prefix' => $device->api_key_prefix],
+            after: ['api_key_prefix' => $prefix],
+            branchId: $device->branch_id,
+            deviceId: $device->id
+        );
 
         return $newToken;
     }
