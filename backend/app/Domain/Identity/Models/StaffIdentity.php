@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 
@@ -77,6 +78,53 @@ class StaffIdentity extends Model
     public function isActive(): bool
     {
         return $this->status === 'active';
+    }
+
+    public function roleAssignments(): HasMany
+    {
+        return $this->hasMany(StaffRoleAssignment::class, 'staff_identity_id');
+    }
+
+    public function assignRole(Role|string $role, ?string $branchId = null): StaffRoleAssignment
+    {
+        $roleId = $role instanceof Role ? $role->id : $role;
+
+        return $this->roleAssignments()->create([
+            'organization_id' => $this->organization_id,
+            'role_id' => $roleId,
+            'branch_id' => $branchId,
+        ]);
+    }
+
+    public function hasPermission(string $permission, ?string $branchId = null): bool
+    {
+        // 1. Staff must be active
+        if (!$this->isActive()) {
+            return false;
+        }
+
+        // 2. Platform permissions can NEVER be granted to operational staff
+        if (str_starts_with($permission, 'platform.')) {
+            return false;
+        }
+
+        // 3. Find active role assignments matching scope
+        $assignments = $this->roleAssignments()->with('role.permissions')->get();
+
+        foreach ($assignments as $assignment) {
+            // Check branch scope:
+            // Role applies if assignment is organization-wide (branch_id is null)
+            // OR if assignment branch_id matches requested branchId
+            $appliesToBranch = $assignment->branch_id === null || ($branchId !== null && $assignment->branch_id === $branchId);
+
+            if ($appliesToBranch && $assignment->role) {
+                if ($assignment->role->permissions->contains('id', $permission)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public function isAssignedToBranch(string $branchId): bool
