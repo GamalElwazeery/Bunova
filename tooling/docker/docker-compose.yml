@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bunova-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bunova
+      POSTGRES_USER: bunova
+      POSTGRES_PASSWORD: bunova_local_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - bunova_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bunova -d bunova"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: bunova-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - bunova_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: bunova-minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: bunova_admin
+      MINIO_ROOT_PASSWORD: bunova_minio_password
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - bunova_miniodata:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: bunova-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 bunova_admin bunova_minio_password;
+      mc mb --ignore-existing local/bunova-media;
+      mc anonymous set public local/bunova-media;
+      exit 0;
+      "
+
+volumes:
+  bunova_pgdata:
+  bunova_redisdata:
+  bunova_miniodata:
