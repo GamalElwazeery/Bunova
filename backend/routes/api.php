@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\HealthCheckController;
 use App\Http\Controllers\Api\StaffAuthController;
@@ -21,4 +22,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/devices/me', [DeviceController::class, 'me'])->name('api.v1.devices.me');
         Route::post('/devices/heartbeat', [DeviceController::class, 'heartbeat'])->name('api.v1.devices.heartbeat');
     });
+
+    // Branch management (versioned API, filtering, pagination, idempotency)
+    Route::get('/branches', [BranchController::class, 'index'])->name('api.v1.branches.index');
+    Route::post('/branches', [BranchController::class, 'store'])->middleware('idempotent')->name('api.v1.branches.store');
+    Route::get('/branches/{id}', [BranchController::class, 'show'])->name('api.v1.branches.show');
 });
