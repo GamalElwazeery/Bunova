@@ -45,7 +45,8 @@ class OutboxService
      */
     public function getPending(int $limit = 50): Collection
     {
-        return OutboxEvent::where('status', OutboxEvent::STATUS_PENDING)
+        return OutboxEvent::withoutGlobalScopes()
+            ->where('status', OutboxEvent::STATUS_PENDING)
             ->orderBy('created_at', 'asc')
             ->limit($limit)
             ->get();
